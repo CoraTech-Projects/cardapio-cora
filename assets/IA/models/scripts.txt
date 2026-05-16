@@ -1,0 +1,42 @@
+
+async function synthetize(message: string): Promise<string> {
+
+    if(!trainingData) {
+        console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Instruindo modelo...");
+        console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Obtendo dados de treinamento...");
+    
+        trainingData = fs.readFileSync(path.resolve(process.cwd(), "assets", "IA", "models") + "/training_prompt.txt", "utf-8");
+        cardapio = fs.readFileSync(path.resolve(process.cwd(), "assets", "IA", "models") + "/cardapio.txt", "utf-8");
+
+        console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Dados de treinamento obtidos.");
+    }
+
+    const messages = [
+        { role: "system", content: trainingData },
+        { role: "user", content: cardapio },
+        { role: 'user', content: message }
+    ];
+
+     prompt = llm.tokenizer.apply_chat_template(messages, {
+        tokenize: false,
+        add_generation_prompt: true
+     });
+
+    console.log("\x1b[32m [ MODEL-LLAMA ]: \x1b[0m Sintetizando resposta...");
+
+
+    const output = await llm(prompt, {
+        max_new_tokens: 150,
+        temperature: 0.1,
+        do_sample: false,
+        return_full_text: false,
+        top_k: 40
+    });
+    
+    let response = output[0].generated_text;
+
+    response = response.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+    console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Resposta sintetizada:", response);
+
+    return response;
+}
