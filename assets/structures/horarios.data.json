@@ -1,0 +1,143 @@
+{
+    "segunda-feira": [
+        {
+       "periodo": "manhã",
+       "entrada": "06:30",
+       "saida": "11:30",
+       "horario_lanche": "10:20",
+       "horario_especial": {},
+       "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã. Aproveite nossas opções deliciosas para começar o seu dia com energia!",
+       "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas com frutas frescas por apenas R$ 15,00! Não perca essa oportunidade de saborear um café da manhã incrível!",
+       "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã está disponível apenas durante o período da manhã, das 06:30 às 11:30. Aproveite enquanto pode!",
+       "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "tarde",
+        "entrada": "11:30",
+        "saida": "17:30",
+        "horario_lanche": "15:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa tarde! Bem-vindo ao nosso cardápio de almoço. Aproveite nossas opções deliciosas para recarregar suas energias durante a tarde!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Frango grelhado com legumes por apenas R$ 25,00! Não perca essa oportunidade de saborear um almoço incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de almoço está disponível apenas durante o período da tarde, das 11:30 às 17:30. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "noite",
+        "entrada": "17:30",
+        "saida": "22:00",
+        "horario_lanche": "20:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa noite! Bem-vindo ao nosso cardápio de jantar. Aproveite nossas opções deliciosas para encerrar o seu dia com uma refeição saborosa!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Lasanha de carne por apenas R$ 30,00! Não perca essa oportunidade de saborear um jantar incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de jantar está disponível apenas durante o período da noite, das 17:30 às 22:00. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        }
+    ],
+    "terça-feira": [
+        {
+       "periodo": "manhã",
+       "entrada": "06:30",
+       "saida": "11:30",
+       "horario_lanche": "10:20",
+       "horario_especial": {},
+       "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã. Aproveite nossas opções deliciosas para começar o seu dia com energia!",
+       "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas com frutas frescas por apenas R$ 15,00! Não perca essa oportunidade de saborear um café da manhã incrível!",
+       "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã está disponível apenas durante o período da manhã, das 06:30 às 11:30. Aproveite enquanto pode!",
+       "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "tarde",
+        "entrada": "11:30",
+        "saida": "17:30",
+        "horario_lanche": "15:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa tarde! Bem-vindo ao nosso cardápio de almoço. Aproveite nossas opções deliciosas para recarregar suas energias durante a tarde!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Frango grelhado com legumes por apenas R$ 25,00! Não perca essa oportunidade de saborear um almoço incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de almoço está disponível apenas durante o período da tarde, das 11:30 às 17:30. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "noite",
+        "entrada": "17:30",
+        "saida": "22:00",
+        "horario_lanche": "20:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa noite! Bem-vindo ao nosso cardápio de jantar. Aproveite nossas opções deliciosas para encerrar o seu dia com uma refeição saborosa!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Lasanha de carne por apenas R$ 30,00! Não perca essa oportunidade de saborear um jantar incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de jantar está disponível apenas durante o período da noite, das 17:30 às 22:00. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        }
+     ],
+     "quarta-feira": [
+        {
+       "periodo": "manhã",
+       "entrada": "06:30",
+       "saida": "11:30",
+       "horario_lanche": "10:20",
+       "horario_especial": {},
+       "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã. Aproveite nossas opções deliciosas para começar o seu dia com energia!",
+       "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas com frutas frescas por apenas R$ 15,00! Não perca essa oportunidade de saborear um café da manhã incrível!",
+       "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã está disponível apenas durante o período da manhã, das 06:30 às 11:30. Aproveite enquanto pode!",
+       "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "tarde",
+        "entrada": "11:30",
+        "saida": "17:30",
+        "horario_lanche": "15:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa tarde! Bem-vindo ao nosso cardápio de almoço. Aproveite nossas opções deliciosas para recarregar suas energias durante a tarde!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Frango grelhado com legumes por apenas R$ 25,00! Não perca essa oportunidade de saborear um almoço incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de almoço está disponível apenas durante o período da tarde, das 11:30 às 17:30. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "noite",
+        "entrada": "17:30",
+        "saida": "22:00",
+        "horario_lanche": "20:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa noite! Bem-vindo ao nosso cardápio de jantar. Aproveite nossas opções deliciosas para encerrar o seu dia com uma refeição saborosa!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Lasanha de carne    por apenas R$ 30,00! Não perca essa oportunidade de saborear um jantar incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de jantar    está disponível apenas durante o período da noite, das 17:30 às 22:00. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        }   
+        ],
+    
+     "quinta-feira": [
+        {
+       "periodo": "manhã",
+       "entrada": "06:30",
+       "saida": "11:30",
+       "horario_lanche": "10:40",
+       "horario_especial": {},
+       "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã. Aproveite nossas opções deliciosas para começar o seu dia com energia!",
+       "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas com frutas frescas por apenas R$ 15,00! Não perca essa oportunidade de saborear um café da manhã incrível!",
+       "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã está disponível apenas durante o período da manhã, das 06:30 às 11:30. Aproveite enquanto pode!",
+       "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "tarde",
+        "entrada": "11:30",
+        "saida": "17:30",
+        "horario_lanche": "15:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa tarde! Bem-vindo ao nosso cardápio de almoço. Aproveite nossas opções deliciosas para recarregar suas energias durante a tarde!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Frango grelhado com legumes por apenas R$ 25,00! Não perca essa oportunidade de saborear um almoço incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de almoço está disponível apenas durante o período da tarde, das 11:30 às 17:30. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+       },
+       {
+        "periodo": "noite",
+        "entrada": "17:30",
+        "saida": "22:00",
+        "horario_lanche": "20:00",
+        "horario_especial": {},
+        "mensagem_boas_vindas": "Boa noite! Bem-vindo ao nosso cardápio de jantar. Aproveite nossas opções deliciosas para encerrar o seu dia com uma refeição saborosa!",
+        "mensagem_destaque": "Hoje temos uma promoção especial: Lasanha de carne    por apenas R$ 30,00! Não perca essa oportunidade de saborear um jantar incrível!",
+        "mensagem_aviso": "Lembre-se de que nosso cardápio de jantar    está disponível apenas durante o período da noite, das 17:30 às 22:00. Aproveite enquanto pode!",
+        "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        }   
+        ]
+}

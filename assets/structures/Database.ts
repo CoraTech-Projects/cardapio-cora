@@ -32,7 +32,7 @@ class Database {
       
       const now = new Date();
       const timeStr = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      console.log("\x1b[34m%s\x1b[0m %s", "[ DATA ]", `: database changed externally - ${timeStr}`);
+      console.log("\x1b[34m%s\x1b[0m %s", " [ DATA ]:", ` database changed externally - ${timeStr}`);
       
       this.loadSync();
     });

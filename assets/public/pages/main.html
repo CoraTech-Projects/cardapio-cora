@@ -4,7 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-     const audio = new Audio("/adm/sinteseIA/Bom_amigo,_receba_este_livro_com_a_mesma_alma_com_que_eu_o_escrevo;_mas_não_o_leia_se_tiver_o_estômago_fraco_ou_a_cabeça_leve.");
+
+        const audio = new Audio();
+        
+async function sendTtsPhrase(snakeCaseText) {
+        const cleanText = snakeCaseText.replace(/ /g, '_');
+        const encodedText = encodeURIComponent(cleanText);
+        const targetUrl = `http://localhost:3000/adm/tts/${encodedText}`;
+        
+        const response = await fetch(targetUrl);
+        
+        const audioBuffer = await response.arrayBuffer();
+        
+        const blob = new Blob([audioBuffer], { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(blob);
+        audio.src = audioUrl;
+}
 
     </script>
 </head>

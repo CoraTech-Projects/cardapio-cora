@@ -148,7 +148,10 @@ function toWavHeader(
 
 async function generateTTS(
     text: string
-): Promise<Buffer> {
+): Promise<Buffer | any> {
+    text = text.replace(/_/g, " ").replace(/;/g, ",");
+
+    console.log("\x1b[34m [ TTS ]: \x1b[0m Gerando áudio para o texto:", text);
 
    const espeak = await ESpeakNg({
   arguments: [
@@ -164,12 +167,12 @@ async function generateTTS(
   ],
 });
 
-const rawIpa = espeak.FS.readFile("generated", { encoding: "utf8" });
-console.log("[FONEMAS IPA]:", rawIpa);
+    const rawIpa = espeak.FS.readFile("generated", { encoding: "utf8" });
+    console.log("\x1b[34m [ TTS ]: \x1b[0m Texto convertido para fonemas IPA:", rawIpa);
 
     const ids: number[] = [];
     const BLANK_ID = phonemeIdMap["_"][0];
-    const phonemes = Array.from(rawIpa);
+    const phonemes: Array<string> = Array.from(rawIpa);
     if (phonemeIdMap["^"]) ids.push(phonemeIdMap["^"][0]);
     ids.push(BLANK_ID);
 
@@ -190,7 +193,7 @@ console.log("[FONEMAS IPA]:", rawIpa);
     const feeds = {
         input: new ort.Tensor("int64", BigInt64Array.from(ids.map(BigInt)), [1, ids.length]),
         input_lengths: new ort.Tensor("int64", BigInt64Array.from([BigInt(ids.length)]), [1]),
-        scales: new ort.Tensor("float32", Float32Array.from([0.667, 1.0, 0.8]), [3])
+        scales: new ort.Tensor("float32", Float32Array.from([0.667, 1.2, 0.8]), [3])
     };
 
     const results = await model.run(feeds);

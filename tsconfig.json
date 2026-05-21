@@ -9,7 +9,7 @@
     "sourceMap": false,
     "emitDeclarationOnly": false, 
     "noEmit": false,
-    
+    "typeRoots": ["./node_modules/@types", "./types"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
