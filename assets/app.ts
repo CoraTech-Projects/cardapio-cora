@@ -8,7 +8,7 @@ import path from "path";
 import fs from "fs";
 import data from "./structures/Database.js";
 
-const db = new data.Database("assets/structures/cardapio.data", true);
+const db = new data.Database("cardapio.data", true);
 
 /**
  * Rotas da API (ENDPOINTS).
@@ -46,5 +46,16 @@ App.get("/pages/:page", async (req: any, res: any) => {
         res.status(404).send("Página não encontrada");
     }
 });
+
+/**
+ * Heartbeat da aplicação.
+ 
+
+setInterval(() => {
+    if(db.all().length <= 0) {
+        console.log("\x1b[31m%s\x1b[0m %s", "[ HEARTBEAT ]", ": sem cardapio encontrado");
+
+    } 
+}, 200);*/
 
 export { App, db };

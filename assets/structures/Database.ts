@@ -15,7 +15,7 @@ class Database {
     public readonly databaseName: string,
     private readonly dataType: boolean
   ) {
-    const dirPath = path.resolve('structures');
+    const dirPath = path.resolve('assets/structures');
     this.filePath = path.join(dirPath, `${databaseName}.json`);
 
     if (!fs.existsSync(dirPath)) {
