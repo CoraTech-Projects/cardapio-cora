@@ -31,4 +31,4 @@ AdmRouter.get("/sinteseIA/:text", async (req: any, res: any) => {
     console.log("Audio buffer sent successfully.");
 });
 
-export { AdmRouter }
+export { AdmRouter };
