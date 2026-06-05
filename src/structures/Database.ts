@@ -15,7 +15,7 @@ class Database {
     public readonly databaseName: string,
     private readonly dataType: boolean
   ) {
-    const dirPath = path.resolve('assets/structures');
+    const dirPath = path.resolve('src/structures');
     this.filePath = path.join(dirPath, `${databaseName}.json`);
 
     if (!fs.existsSync(dirPath)) {
@@ -29,11 +29,18 @@ class Database {
   private initWatcher(): void {
     chd.watch(this.filePath).on('change', () => {
       if (this.isSelfWriting) return;
-      
+
       const now = new Date();
-      const timeStr = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      console.log("\x1b[34m%s\x1b[0m %s", " [ DATA ]:", ` database changed externally - ${timeStr}`);
-      
+      const timeStr = now.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+      console.log(
+        '\x1b[34m%s\x1b[0m %s',
+        ' [ DATA ]:',
+        ` database changed externally - ${timeStr}`
+      );
+
       this.loadSync();
     });
   }
@@ -48,7 +55,10 @@ class Database {
         this.save();
       }
     } catch (err) {
-      console.error(`[ERROR] Fail to load database: ${this.databaseName}:`, err);
+      console.error(
+        `[ERROR] Fail to load database: ${this.databaseName}:`,
+        err
+      );
       this.db = {};
     }
   }
@@ -57,8 +67,10 @@ class Database {
     try {
       this.isSelfWriting = true;
       fs.writeFileSync(this.filePath, JSON.stringify(this.db, null, 2));
- 
-      setTimeout(() => { this.isSelfWriting = false; }, 100);
+
+      setTimeout(() => {
+        this.isSelfWriting = false;
+      }, 100);
       return true;
     } catch (error) {
       this.isSelfWriting = false;
@@ -71,20 +83,19 @@ class Database {
   }
 
   public insert(collection: string, data: any): boolean {
-
     this.db[collection] = data;
     return this.save();
   }
 
   public update(collection: string, dotPath: string, value: any): boolean {
     const keys = dotPath.split('.');
-    
+
     if (!this.db[collection]) {
       this.db[collection] = {};
     }
 
     let target = this.db[collection];
-    
+
     for (let i = 0; i < keys.length - 1; i++) {
       const key = keys[i];
       if (!(key in target) || typeof target[key] !== 'object') {
@@ -109,16 +120,16 @@ class Database {
 
     if (Array.isArray(records) && this.dataType) {
       const initialLength = records.length;
-      const filtered = records.filter(item => {
-        return !Object.keys(query).every(key => item[key] === query[key]);
+      const filtered = records.filter((item) => {
+        return !Object.keys(query).every((key) => item[key] === query[key]);
       });
 
       if (filtered.length === initialLength) return false;
-      
+
       this.db[collection] = filtered;
       return this.save();
-    } 
-    
+    }
+
     delete this.db[collection];
     return this.save();
   }
@@ -129,7 +140,7 @@ class Database {
   }
 
   public has(value: any): boolean {
-    return this.all().some(item => {
+    return this.all().some((item) => {
       if (item && typeof item === 'object') {
         return Object.values(item).includes(value);
       }
@@ -138,12 +149,14 @@ class Database {
   }
 
   public robustSearch(value: any): any | false {
-    return this.all().find(item => {
-      if (item && typeof item === 'object') {
-        return Object.values(item).includes(value);
-      }
-      return item === value;
-    }) ?? false;
+    return (
+      this.all().find((item) => {
+        if (item && typeof item === 'object') {
+          return Object.values(item).includes(value);
+        }
+        return item === value;
+      }) ?? false
+    );
   }
 }
 

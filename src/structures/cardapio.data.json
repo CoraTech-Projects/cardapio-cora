@@ -1,20 +1,17 @@
 {
-    "segunda-feira":
-         {
-            "prato": "Frango Grelhado",
-            "acompanhamento": "Arroz e Feijão",
-            "sobremesa": "Salada de Frutas"
-         },
-    "terça-feira": 
-        {
-            "prato": "Peito de Frango Grelhado",
-            "acompanhamento": "Arroz e Feijão",
-            "sobremesa": "Mousse de Chocolate"
-        },
-    "quarta-feira":
-        {
-            "prato": "Carne de Panela",
-            "acompanhamento": "Arroz e Feijão",
-            "sobremesa": "Gelatina"
-       }
+  "segunda-feira": {
+    "prato": "Frango Grelhado",
+    "acompanhamento": "Arroz e Feijão",
+    "sobremesa": "Salada de Frutas"
+  },
+  "terça-feira": {
+    "prato": "Peito de Frango Grelhado",
+    "acompanhamento": "Arroz e Feijão",
+    "sobremesa": "Mousse de Chocolate"
+  },
+  "quarta-feira": {
+    "prato": "Carne de Panela",
+    "acompanhamento": "Arroz e Feijão",
+    "sobremesa": "Gelatina"
+  }
 }

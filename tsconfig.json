@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ESNext",       
+    "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
 
     "declaration": false,
     "declarationMap": false,
     "sourceMap": false,
-    "emitDeclarationOnly": false, 
+    "emitDeclarationOnly": false,
     "noEmit": false,
     "typeRoots": ["./node_modules/@types", "./types"],
     "esModuleInterop": true,

@@ -1,0 +1,726 @@
+/* Variáveis de Tema (Dinâmicas) */
+:root[data-theme='light'] {
+  --bg-principal: #f8fafc;
+  --bg-card: #ffffff;
+  --sidebar: #0f172a;
+  --sidebar-texto: #94a3b8;
+  --sidebar-ativo: #38bdf8;
+  --texto-principal: #1e293b;
+  --texto-secundario: #64748b;
+  --borda: #e2e8f0;
+  --accent: #0284c7;
+}
+
+:root[data-theme='dark'] {
+  --bg-principal: #0f172a;
+  --bg-card: #1e293b;
+  --sidebar: #020617;
+  --sidebar-texto: #64748b;
+  --sidebar-ativo: #38bdf8;
+  --texto-principal: #f1f5f9;
+  --texto-secundario: #94a3b8;
+  --borda: #334155;
+  --accent: #38bdf8;
+}
+
+:root[data-theme='blue'] {
+  --bg-principal: #0b192c;
+  --bg-card: #1e3e62;
+  --sidebar: #001f3f;
+  --sidebar-texto: #b3c8cf;
+  --sidebar-ativo: #f1c40f;
+  --texto-principal: #ffffff;
+  --texto-secundario: #cbd5e1;
+  --borda: #1e3e62;
+  --accent: #0074d9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s;
+}
+
+body {
+  background-color: var(--bg-principal);
+  color: var(--texto-principal);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- SIDEBAR (BARRA LATERAL) --- */
+aside {
+  width: 260px;
+  background-color: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.brand img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  background: white;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.brand h2 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--sidebar-texto);
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu-item a:hover,
+.menu-item.active a {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--sidebar-ativo);
+}
+
+.menu-item a .material-icons-round {
+  font-size: 20px;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Topbar / Cabeçalho */
+header {
+  background-color: var(--bg-card);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--borda);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-principal);
+  padding: 8px 15px;
+  border-radius: 20px;
+  width: 300px;
+  border: 1px solid var(--borda);
+}
+
+.search-bar input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--texto-principal);
+  margin-left: 8px;
+  width: 100%;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Seletor de Temas Estilizado */
+.theme-selector {
+  background: var(--bg-principal);
+  border: 1px solid var(--borda);
+  color: var(--texto-principal);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.profile img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Main Dashboard */
+main {
+  padding: 30px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.welcome-section {
+  margin-bottom: 30px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.welcome-section h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.welcome-section p {
+  color: var(--texto-secundario);
+}
+
+/* Grid de Cards Dinâmicos */
+.grid-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card-stat {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de brilho/animação ao passar o mouse */
+.card-stat::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.card-stat:hover::after {
+  left: 100%;
+}
+
+.card-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+
+.stat-details h3 {
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.stat-details .number {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.stat-icon {
+  padding: 12px;
+  border-radius: 12px;
+  background-color: var(--bg-principal);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Seção Inferior Dinâmica (Atividades Recentes simuladas) */
+.recent-activity {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.recent-activity h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.activity-item:last-child {
+  border: none;
+}
+
+.activity-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.activity-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.card-stat.loading {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  animation: pulse 1.8s infinite;
+}
+
+.card-stat.loading .stat-icon {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+/* --- ESTILOS EXCLUSIVOS DA TELA DE CARDÁPIO --- */
+.cardapio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.btn-adicionar {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-adicionar:hover {
+  filter: brightness(1.1);
+}
+
+/* Grid de Refeições */
+.grid-cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.card-prato {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.prato-header {
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-bottom: 1px solid var(--borda);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prato-tag {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--sidebar-ativo);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.prato-corpo {
+  padding: 20px;
+}
+
+.prato-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.prato-ingredientes {
+  color: var(--texto-secundario);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.prato-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--borda);
+  padding-top: 15px;
+}
+
+.badge-calorias {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+.prato-acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--texto-secundario);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.btn-icon:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-icon.edit:hover {
+  color: var(--sidebar-ativo);
+}
+.btn-icon.delete:hover {
+  color: #ef4444;
+}
+
+/* --- ORGANIZAÇÃO POR DIAS DA SEMANA --- */
+.semana-container {
+  margin-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.01);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--borda);
+}
+
+.dia-titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--sidebar-ativo);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- MODAL DE EDIÇÃO (TELA SUSPENSA) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px); /* Desfoca o fundo do painel */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Classe que o JS vai usar para mostrar o modal */
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Formulários do Modal */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  background-color: var(--bg-principal);
+  border: 1px solid var(--borda);
+  color: var(--texto-principal);
+  padding: 10px 14px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.form-control:focus {
+  border-color: var(--sidebar-ativo);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  border-top: 1px solid var(--borda);
+  padding-top: 15px;
+}
+
+.btn-secundario {
+  background: transparent;
+  border: 1px solid var(--borda);
+  color: var(--texto-principal);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-secundario:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- ESTILOS EXCLUSIVOS DA TELA DE ROTINAS --- */
+.rotina-periodo-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.periodo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.periodo-badge {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--sidebar-ativo);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Grid de Horários */
+.rotina-horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.horario-item {
+  background-color: var(--bg-principal);
+  border: 1px solid var(--borda);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.horario-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+  margin-bottom: 4px;
+}
+
+.horario-item strong {
+  font-size: 1.1rem;
+  color: var(--texto-principal);
+}
+
+/* Bloco de Mensagens e Alertas */
+.rotina-mensagens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg-box {
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border-left: 4px solid transparent;
+}
+
+.msg-box.boas-vindas {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-left-color: var(--texto-secundario);
+}
+
+.msg-box.destaque {
+  background-color: rgba(234, 179, 8, 0.05);
+  border-left-color: #eab308;
+  color: #fef08a;
+}
+
+.msg-box.aviso {
+  background-color: rgba(239, 68, 68, 0.05);
+  border-left-color: #ef4444;
+  color: #fecaca;
+}
+
+.msg-box.coordenacao {
+  background-color: rgba(168, 85, 247, 0.05);
+  border-left-color: #a855f7;
+  color: #e9d5ff;
+}
+
+/* Animação Inicial */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  aside {
+    width: 100%;
+    height: auto;
+  }
+  .search-bar {
+    display: none;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--borda);
+  }
+  50% {
+    background-color: var(--bg-principal);
+  }
+  100% {
+    background-color: var(--borda);
+  }
+}

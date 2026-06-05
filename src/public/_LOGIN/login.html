@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/_LOGIN/login.css" />
+    <script src="/_LOGIN/login.js"></script>
+    <script
+      src="https://kit.fontawesome.com/28157a8fdb.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <form
+      class="login-box"
+      method="POST"
+      action="/user/login"
+      target="iframe-resposta"
+    >
+      <img src="/assets/images/logo.png" alt="" class="logo" />
+      <h3>Login Administrativo</h3>
+      <p>as informações são únicas, para acesso do cardapio</p>
+      <hr />
+      <h4>Identificador</h4>
+      <div class="text-area" style="margin-bottom: 10px">
+        <i class="fa-solid fa-address-card"></i>
+        <input
+          type="text"
+          placeholder="Identificador..."
+          name="email"
+          id="identificator"
+        />
+      </div>
+      <h4>Senha</h4>
+      <div class="text-area">
+        <i class="fa-solid fa-key"></i>
+        <input
+          type="password"
+          placeholder="1234..."
+          name="password"
+          id="password"
+        />
+        <i
+          class="fa-solid fa-eye-slash showPass"
+          onclick="togglePassword()"
+        ></i>
+      </div>
+      <p class="error-message" id="error-message"></p>
+
+      <button class="confirm">Entrar</button>
+    </form>
+    <iframe
+      name="iframe-resposta"
+      id="iframe-resposta"
+      style="display: none"
+      onload="validateLogin()"
+    ></iframe>
+    <footer>© 2026 Cora Tech</footer>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+body {
+  background: linear-gradient(#d8e5ee 10%, #acc8dd 90%);
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Caixa principal do login */
+.login-box {
+  text-align: center;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra suave para dar profundidade */
+  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+.login-box .logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 5px;
+}
+
+.login-box h3 {
+  margin: 0 0 5px 0;
+  color: #005595;
+  font-size: 20px;
+}
+
+.login-box p {
+  margin: 0 0 15px 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
+}
+
+/* Linha divisória */
+.login-box hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 84, 149, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Labels (Identificador / Senha) */
+.login-box h4 {
+  margin: 0 0 6px 0;
+  color: rgba(0, 84, 149, 0.8);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+}
+/* Container do Input (Fundo cinza) - Aumentado para dar mais espaço */
+.login-box .text-area {
+  padding: 0 12px;
+  background: #ebebeb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  width: 320px; /* Aumentado de 246px para 320px */
+  height: 45px;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+/* O Ícone dentro do campo */
+.login-box .text-area i {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  color: #005595;
+  border-right: 1.5px solid rgba(0, 84, 149, 0.3);
+  height: 50%; /* Linha vertical centralizada e elegante */
+}
+
+/* O Campo de digitação real */
+.login-box .text-area input {
+  border: none;
+  outline: none;
+  background: transparent;
+  height: 100%;
+  width: 100%; /* Ocupa todo o espaço restante após o ícone */
+  padding-left: 10px; /* Afasta o texto digitado do ícone */
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.login-box .text-area .showPass {
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: #003157;
+  cursor: pointer;
+  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+.login-box .text-area .showPass.fa-eye-slash {
+  opacity: 0.5;
+  color: rgb(0, 0, 0);
+}
+
+/* Botão Entrar - Acompanha a nova largura para manter o alinhamento perfeito */
+.login-box .confirm {
+  margin-top: 10px;
+  padding: 12px;
+  width: 320px; /* Aumentado de 246px para 320px */
+  border: none;
+  border-radius: 8px;
+  background: #005595;
+  color: #f0f0f0;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+.error-message {
+  color: #d8000c;
+  background-color: #ffbaba;
+  padding: 10px;
+  border-radius: 5px;
+  bottom: 50px;
+  right: 510px;
+  margin-right: 20px;
+  font-size: 0px;
+  opacity: 0;
+  position: absolute;
+  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+
+.error-message.show {
+  font-size: 14px;
+  opacity: 1;
+}
+
+/* Feedback visual ao passar o mouse e clicar */
+.login-box .confirm:hover {
+  background: #004477;
+  transform: scale(1.02);
+}
+
+.login-box .confirm:active {
+  transform: scale(0.98); /* Leve efeito de clique */
+}
+
+.login-box .confirm:disabled {
+  background: #002642;
+  cursor: not-allowed;
+  transform: none; /* Sem efeito de clique quando desabilitado */
+}
+
+.login-box .text-area:hover {
+  transform: scale(1.02);
+}
+
+footer {
+  margin: 5px 0 0 0;
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+}
+
+footer div {
+  display: inline-block;
+  font-weight: bold;
+  color: #005595;
+}

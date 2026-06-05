@@ -5,8 +5,8 @@ async function synthetize(message: string): Promise<string> {
         console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Instruindo modelo...");
         console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Obtendo dados de treinamento...");
     
-        trainingData = fs.readFileSync(path.resolve(process.cwd(), "assets", "IA", "models") + "/training_prompt.txt", "utf-8");
-        cardapio = fs.readFileSync(path.resolve(process.cwd(), "assets", "IA", "models") + "/cardapio.txt", "utf-8");
+        trainingData = fs.readFileSync(path.resolve(process.cwd(), "src", "IA", "models") + "/training_prompt.txt", "utf-8");
+        cardapio = fs.readFileSync(path.resolve(process.cwd(), "src", "IA", "models") + "/cardapio.txt", "utf-8");
 
         console.log("\x1b[32m [ MODEL_LLAMA ]: \x1b[0m Dados de treinamento obtidos.");
     }

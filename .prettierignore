@@ -1,0 +1,20 @@
+# Ignorar dependências e pastas de build
+node_modules/
+dist/
+build/
+
+# Ignorar arquivos de Inteligência Artificial e Modelos
+src/IA/models/
+*.onnx
+*.onnx.json
+
+# Ignorar tipagens e arquivos de configuração do sistema
+*.d.ts
+tsconfig.json
+.prettierrc
+
+# Ignorar arquivos de dados / bancos locais em JSON
+src/structures/*.json
+src/utils/*.json
+package.json
+package-lock.json

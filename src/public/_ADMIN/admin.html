@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - CECC</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/_ADMIN/admin.css" />
+    <script src="/_ADMIN/admin.js" defer></script>
+  </head>
+  <body data-theme="light">
+    <aside>
+      <div class="brand">
+        <img src="/assets/images/logo.png" alt="Logo CECC" />
+        <h2>CECC Admin</h2>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-item active">
+          <a href="#dashboard"
+            ><span class="material-icons-round">dashboard</span>Dashboard</a
+          >
+        </li>
+        <li class="menu-item">
+          <a href="#cardapio"
+            ><span class="material-icons-round">restaurant</span>Cardapio</a
+          >
+        </li>
+        <li class="menu-item">
+          <a href="#rotinas"
+            ><span class="material-icons-round">calendar_today</span>Rotinas</a
+          >
+        </li>
+        <li class="menu-item">
+          <a href="#configuracoes"
+            ><span class="material-icons-round">settings</span>Configurações</a
+          >
+        </li>
+        <li class="menu-item" style="margin-top: 20px">
+          <a href="/user/logout" style="color: #ef4444"
+            ><span class="material-icons-round">logout</span>Sair</a
+          >
+        </li>
+      </ul>
+    </aside>
+
+    <div class="wrapper">
+      <header>
+        <div class="search-bar">
+          <span
+            class="material-icons-round"
+            style="color: var(--texto-secundario)"
+            >search</span
+          >
+          <input type="text" placeholder="Buscar no sistema..." />
+        </div>
+
+        <div class="header-actions">
+          <select
+            id="themeChange"
+            class="theme-selector"
+            onchange="alterarTema(this.value)"
+          >
+            <option value="light">Claro</option>
+            <option value="dark">Escuro</option>
+            <option value="blue">Noturno</option>
+          </select>
+
+          <div class="profile">
+            <img src="/assets/images/7.png" alt="Foto do perfil" />
+            <span style="font-weight: 500">Admin</span>
+          </div>
+        </div>
+      </header>
+      <main>
+        <section class="welcome-section">
+          <h1>Bem-vindo de volta, Administrador!</h1>
+          <p>Aqui está o resumo geral das atividades do CECC hoje.</p>
+        </section>
+        <div class="grid-stats">
+          <div class="card-stat loading">
+            <div class="stat-details">
+              <h3></h3>
+              <div class="number"></div>
+            </div>
+            <div class="stat-icon">
+              <span class="material-icons-round"></span>
+            </div>
+          </div>
+          <div class="card-stat loading">
+            <div class="stat-details">
+              <h3></h3>
+              <div class="number"></div>
+            </div>
+            <div class="stat-icon">
+              <span class="material-icons-round"></span>
+            </div>
+          </div>
+          <div class="card-stat loading">
+            <div class="stat-details">
+              <h3></h3>
+              <div class="number"></div>
+            </div>
+            <div class="stat-icon">
+              <span class="material-icons-round"></span>
+            </div>
+          </div>
+        </div>
+
+        <section class="recent-activity">
+          <h2>Atividades Recentes do Sistema</h2>
+          <div class="activity-item">
+            <div class="activity-info">
+              <div class="activity-badge"></div>
+              <div>
+                <strong>Fim do Período da Manhã</strong>
+                <p style="font-size: 0.85rem; color: var(--texto-secundario)">
+                  Fim do período da manhã.
+                </p>
+              </div>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--texto-secundario)"
+              >Há 5 min</span
+            >
+          </div>
+          <div class="activity-item">
+            <div class="activity-info">
+              <div class="activity-badge"></div>
+              <div>
+                <strong>Relatório Emitido</strong>
+                <p style="font-size: 0.85rem; color: var(--texto-secundario)">
+                  Relatório de fechamento mensal gerado por Admin.
+                </p>
+              </div>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--texto-secundario)"
+              >Há 1 hora</span
+            >
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
