@@ -1,0 +1,194 @@
+{
+  "rotinas": [
+    {
+      "segunda-feira": [
+        {
+          "dia": "segunda-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "09:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã...",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas...",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã...",
+          "mensagem_coordenacao": "havera prova de matemática hoje, prepare-se!"
+        },
+        {
+          "dia": "segunda-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã...",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas...",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã...",
+          "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!",
+          "mensagem_coordenacao": "havera prova de matemática hoje, prepare-se!"
+        },
+        {
+          "dia": "segunda-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "22:00",
+          "horario_lanche": "20:00",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã...",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas...",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã...",
+          "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!",
+          "mensagem_coordenacao": "thwrtyhwrtywrtyurt"
+        }
+      ],
+      "terça-feira": [
+        {
+          "dia": "terça-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "11:30",
+          "horario_lanche": "10:20",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã. Aproveite nossas opções deliciosas para começar o seu dia com energia!",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas com frutas frescas por apenas R$ 15,00! Não perca essa oportunidade de saborear um café da manhã incrível!",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã está disponível apenas durante o período da manhã, das 06:30 às 11:30. Aproveite enquanto pode!",
+          "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        },
+        {
+          "dia": "terça-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:00",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia! Bem-vindo ao nosso cardápio de café da manhã...",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Panquecas...",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de café da manhã...",
+          "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!",
+          "mensagem_coordenacao": "havera prova de matemática hoje, prepare-se!"
+        },
+        {
+          "dia": "terça-feira",
+          "periodo": "noite",
+          "entrada": "17:30",
+          "saida": "22:00",
+          "horario_lanche": "20:00",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Boa noite! Bem-vindo ao nosso cardápio de jantar. Aproveite nossas opções deliciosas para encerrar o seu dia com uma refeição saborosa!",
+          "mensagem_destaque": "Hoje temos uma promoção especial: Lasanha de carne por apenas R$ 30,00! Não perca essa oportunidade de saborear um jantar incrível!",
+          "mensagem_aviso": "Lembre-se de que nosso cardápio de jantar está disponível apenas durante o período da noite, das 17:30 às 22:00. Aproveite enquanto pode!",
+          "mensagem_coodernacao": "havera prova de matemática hoje, prepare-se!"
+        }
+      ],
+      "quinta-feira": [
+        {
+          "dia": "quinta-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "09:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
+          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
+          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
+          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+        },
+        {
+          "dia": "quinta-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
+          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
+          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
+          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+        },
+        {
+          "dia": "quinta-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "21:52",
+          "horario_lanche": "20:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
+          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
+          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
+          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
+        }
+      ],
+      "sexta-feira": [
+        {
+          "dia": "sexta-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "09:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
+          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
+          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
+          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+        },
+        {
+          "dia": "sexta-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
+          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
+          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
+          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+        },
+        {
+          "dia": "sexta-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "21:53",
+          "horario_lanche": "20:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
+          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
+          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
+          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
+        }
+      ]
+    }
+  ],
+  "cardapio": [
+    {
+      "prato": "MMMMMMMMMM",
+      "acompanhamento": "laranja em fatias",
+      "dia": "segunda-feira",
+      "especial": "false",
+      "description": "sua descricao...",
+      "id": "38Y2M6X"
+    }
+  ],
+  "accounts": {
+    "dark.js6507@gmail.com": {
+      "email": "dark.js6507@gmail.com",
+      "password": "12345678",
+      "name": "MOTO",
+      "role": "admin",
+      "identifier": "master"
+    }
+  },
+  "settings": {
+    "monitor": {
+      "auto_update": true,
+      "transition": 10
+    },
+    "ia_speech": {
+      "speech_engine": "espeak",
+      "speech_speed": "2",
+      "auto_advertise": false
+    },
+    "plugins": {
+      "audit_logs": false
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import express from 'express';
-import { checkFor, loginAdminToken } from '../utils/adminAccounts.js';
 import { tokenCreator } from '../middlawere/OAuth.js';
+import { db } from '../structures/db.js';
 
 const UserRouter = express.Router();
 
@@ -20,7 +20,10 @@ UserRouter.get('/logout', (req: any, res: any) => {
 UserRouter.post('/login', (req: any, res: any) => {
   const { email, password } = req.body;
 
-  if (checkFor(email) === undefined || checkFor(email)?.password !== password) {
+  if (
+    db.get('accounts.' + email) === undefined ||
+    db.get('accounts.' + email)?.password
+  ) {
     return res.status(401).json({ error: 'Credenciais inválidas' });
   }
 

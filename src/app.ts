@@ -1,27 +1,25 @@
 /**
  * Bibliotecas do projeto
  */
-import express, { Response, Request, NextFunction } from 'express';
+import express, { Response, Request } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import path from 'path';
-import fs from 'fs';
 import c from 'cookie-parser';
-import data from './structures/Database.js';
-import './utils/tempManage.js';
+import { db } from './structures/db.js';
+import { initTempManage } from './utils/tempManage.js';
 import 'dotenv/config';
 
-/**
- * Configuração do banco de dados (usando a estrutura personalizada Database) para armazenar o cardápio. O banco de dados é persistente e armazena os dados em um arquivo chamado "cardapio.data".
- */
-const db = new data.Database('cardapio.data', true);
+initTempManage(db);
 /**
  * Rotas da API (ENDPOINTS).
+ *
  */
 import { AdmRouter } from './routes/Adm.js';
-import { HorariosRouter } from './routes/Horarios.js';
+import { RotinasRouter } from './routes/Rotinas.js';
 import { UserRouter } from './routes/User.js';
-
+import { CardapioRouter } from './routes/Cardapio.js';
+import { MonitorRouter } from './routes/Monitor.js';
 import { T, tokenCreator } from './middlawere/OAuth.js';
 /**
  * Rotas para funções middlaweres.
@@ -47,25 +45,12 @@ App.use(T);
  */
 
 App.get('/', (req: Request, res: Response) => {
-  res.send('ola mundo');
+  res.redirect('/admin');
 });
-App.use('/horarios', HorariosRouter);
+App.use('/rotinas', RotinasRouter);
 App.use('/admin', AdmRouter);
-App.get('/pages/:page', async (req: any, res: any) => {
-  const page = req.params.page || 'main';
-
-  if (
-    fs.existsSync(
-      path.resolve(process.cwd(), 'src', 'public', 'pages') + `/${page}`
-    )
-  ) {
-    res.sendFile(
-      path.resolve(process.cwd(), 'src', 'public', 'pages') + `/${page}`
-    );
-  } else {
-    res.status(404).send('Página não encontrada');
-  }
-});
 App.use('/user', UserRouter);
+App.use('/cardapio', CardapioRouter);
+App.use('/monitor', MonitorRouter);
 
-export { App, db };
+export { App };

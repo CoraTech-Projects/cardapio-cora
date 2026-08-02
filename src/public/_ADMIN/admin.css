@@ -139,11 +139,7 @@ header {
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: var(--bg-principal);
-  padding: 8px 15px;
-  border-radius: 20px;
   width: 300px;
-  border: 1px solid var(--borda);
 }
 
 .search-bar input {
@@ -364,6 +360,10 @@ main {
 
 .btn-adicionar:hover {
   filter: brightness(1.1);
+}
+
+.btn-adicionar:disabled {
+  opacity: 0.5;
 }
 
 /* Grid de Refeições */
@@ -676,6 +676,296 @@ main {
   background-color: rgba(168, 85, 247, 0.05);
   border-left-color: #a855f7;
   color: #e9d5ff;
+}
+
+/* --- SUB-CARDS REFINADOS DE ROTINA --- */
+.dia-rotina-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dia-rotina-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.dia-rotina-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--sidebar-ativo);
+}
+
+/* Grid para colocar os períodos lado a lado (Subcards) */
+.periodos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* O Subcard de cada período */
+.subcard-periodo {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.subcard-periodo:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+
+.subcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.badge-periodo {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--sidebar-ativo);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Grade Interna de Horários Compacta */
+.subcard-horarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.subcard-horarios .time-box {
+  background-color: var(--bg-principal);
+  border: 1px solid var(--borda);
+  padding: 8px 4px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.subcard-horarios .time-box span {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--texto-secundario);
+  margin-bottom: 2px;
+}
+
+.subcard-horarios .time-box strong {
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+}
+
+/* Lista Invisível de Alertas/Mensagens */
+.subcard-info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.info-inline.boas-vindas {
+  border-left: 3px solid var(--texto-secundario);
+}
+.info-inline.destaque {
+  border-left: 3px solid #eab308;
+  color: #fef08a;
+  background-color: rgba(234, 179, 8, 0.02);
+}
+.info-inline.aviso {
+  border-left: 3px solid #ef4444;
+  color: #fecaca;
+  background-color: rgba(239, 68, 68, 0.02);
+}
+.info-inline.coordenacao {
+  border-left: 3px solid #a855f7;
+  color: #e9d5ff;
+  background-color: rgba(168, 85, 247, 0.02);
+}
+
+/* --- ESTILOS EXCLUSIVOS DA TELA DE CONFIGURAÇÕES --- */
+.config-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.config-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.config-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--borda);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.config-card-header .icon-wrapper {
+  color: var(--sidebar-ativo);
+  display: flex;
+  align-items: center;
+}
+
+.config-card-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Linhas de Opções (Rows) */
+.config-option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.config-option-row:last-child {
+  border-bottom: none;
+}
+
+.option-info h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.option-info p {
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+  line-height: 1.3;
+}
+
+/* Switch / Toggle Bonito (Tema Escuro) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-principal);
+  border: 1px solid var(--borda);
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--texto-secundario);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: rgba(56, 189, 248, 0.2);
+  border-color: var(--sidebar-ativo);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+  background-color: var(--sidebar-ativo);
+}
+
+/* Botão de Ação dentro do Card */
+.btn-config-action {
+  background-color: var(--bg-principal);
+  border: 1px solid var(--borda);
+  color: var(--texto-principal);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-config-action:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--texto-secundario);
+}
+
+.image-card {
+  text-align: center;
+  margin: 5px;
+  opacity: 0.6;
+}
+
+.image-card img {
+  width: 80px;
+  height: 80px;
+}
+
+.image-card h2 {
+  color: #fff;
+  margin: 0;
+}
+
+.image-card p {
+  color: #fff;
+  opacity: 0.5;
+  margin: 0;
+}
+
+select:disabled {
+  opacity: 0.5;
 }
 
 /* Animação Inicial */

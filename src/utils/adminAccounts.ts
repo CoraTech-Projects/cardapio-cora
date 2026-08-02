@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { db } from '../structures/db.js';
 
 interface Account {
   email: string;
@@ -19,27 +20,10 @@ const accounts: Account[] = Array(
   )
 ) as Account[];
 
-function checkFor(email: string | any): Account | undefined {
-  const result: any = accounts.find((x: Account) => {
-    const entry = Object.entries(x);
-    return entry[0][1].email === email;
-  });
-  return result[email];
-}
+function checkFor(email: string | any) {}
 
-function loginAdminToken(email: string, token: string) {
-  const account: Account | undefined = checkFor(email);
-  if (!account) return false;
-  account.token = token;
-  fs.writeFileSync(
-    path.resolve(process.cwd(), 'src', 'utils', 'accounts.json'),
-    JSON.stringify(accounts, null, 2)
-  );
-  return true;
-}
+function loginAdminToken(email: string, token: string) {}
 
-function getAdminByToken(token: string): Account | undefined {
-  return accounts.find((x: Account) => x.token == token);
-}
+function getAdminByToken(token: string) {}
 
 export { checkFor, loginAdminToken, getAdminByToken };

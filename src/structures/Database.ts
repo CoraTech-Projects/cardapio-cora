@@ -83,18 +83,101 @@ class Database {
   }
 
   public insert(collection: string, data: any): boolean {
+    if (!this.db[collection]) {
+      // Initialize collection based on provided data shape when absent
+      this.db[collection] = Array.isArray(data) ? [] : {};
+    }
+
+    if (Array.isArray(this.db[collection])) {
+      if (Array.isArray(data)) {
+        this.db[collection].push(...data);
+      } else {
+        this.db[collection].push(data);
+      }
+      return this.save();
+    }
+
+    // For object collections, assign directly
     this.db[collection] = data;
     return this.save();
+  }
+
+  private findArrayElement(
+    arr: any[],
+    identifier: string
+  ): { item: any; index: number } | null {
+    if (!Array.isArray(arr)) return null;
+
+    if (/^\d+$/.test(identifier)) {
+      const index = Number(identifier);
+      if (arr[index] !== undefined) {
+        return { item: arr[index], index };
+      }
+    }
+
+    const keyCandidates = ['id', 'dia', 'name', 'identifier'];
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i];
+      if (item && typeof item === 'object') {
+        if (keyCandidates.some((key) => item[key] === identifier)) {
+          return { item, index: i };
+        }
+      }
+    }
+
+    for (let i = 0; i < arr.length; i++) {
+      const item = arr[i];
+      if (item && typeof item === 'object') {
+        if (Object.values(item).includes(identifier)) {
+          return { item, index: i };
+        }
+      } else if (item === identifier) {
+        return { item, index: i };
+      }
+    }
+
+    return null;
   }
 
   public update(collection: string, dotPath: string, value: any): boolean {
     const keys = dotPath.split('.');
 
     if (!this.db[collection]) {
+      // Default to object for nested updates; arrays are created explicitly via insert
       this.db[collection] = {};
     }
 
     let target = this.db[collection];
+
+    if (Array.isArray(target) && this.dataType) {
+      const [firstKey, ...restKeys] = keys;
+      const entry = this.findArrayElement(target, firstKey);
+
+      if (!entry) {
+        if (restKeys.length === 0 && typeof value === 'object') {
+          target.push(value);
+          return this.save();
+        }
+        return false;
+      }
+
+      if (restKeys.length === 0) {
+        target[entry.index] = value;
+        return this.save();
+      }
+
+      let arrayTarget = entry.item;
+      for (let i = 0; i < restKeys.length - 1; i++) {
+        const key = restKeys[i];
+        if (!(key in arrayTarget) || typeof arrayTarget[key] !== 'object') {
+          arrayTarget[key] = {};
+        }
+        arrayTarget = arrayTarget[key];
+      }
+
+      arrayTarget[restKeys[restKeys.length - 1]] = value;
+      return this.save();
+    }
 
     for (let i = 0; i < keys.length - 1; i++) {
       const key = keys[i];
@@ -108,7 +191,48 @@ class Database {
     return this.save();
   }
 
-  public delete(collection: string, query?: Record<string, any>): boolean {
+  private deleteNested(collection: string, dotPath: string): boolean {
+    if (!this.db[collection]) {
+      return false;
+    }
+
+    const keys = dotPath.split('.');
+    let target: any = this.db[collection];
+
+    if (Array.isArray(target) && this.dataType) {
+      const entry = this.findArrayElement(target, dotPath);
+      if (!entry) {
+        return false;
+      }
+      target.splice(entry.index, 1);
+      return this.save();
+    }
+
+    for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i];
+      if (!(key in target) || typeof target[key] !== 'object') {
+        return false;
+      }
+      target = target[key];
+    }
+
+    const lastKey = keys[keys.length - 1];
+    if (!(lastKey in target)) {
+      return false;
+    }
+
+    delete target[lastKey];
+    return this.save();
+  }
+
+  public delete(
+    collection: string,
+    query?: Record<string, any> | string
+  ): boolean {
+    if (typeof query === 'string') {
+      return this.deleteNested(collection, query);
+    }
+
     if (!this.db[collection]) return false;
 
     if (!query) {
@@ -139,13 +263,38 @@ class Database {
     return this.dataType ? values.flat(1) : values;
   }
 
+  private getNestedFromArray(target: any[], key: string): any {
+    const entry = this.findArrayElement(target, key);
+    return entry ? entry.item : undefined;
+  }
+
   public has(value: any): boolean {
-    return this.all().some((item) => {
-      if (item && typeof item === 'object') {
-        return Object.values(item).includes(value);
+    // Verifica se há um caminho profundo (collection.key ou collection.key.subkey)
+    if (typeof value === 'string' && value.includes('.')) {
+      const keys = value.split('.');
+      let target: any = this.db;
+
+      for (const key of keys) {
+        if (Array.isArray(target) && this.dataType) {
+          target = this.getNestedFromArray(target, key);
+        } else if (target && typeof target === 'object' && key in target) {
+          target = target[key];
+        } else {
+          return false;
+        }
       }
-      return item === value;
-    });
+      return target !== undefined;
+    }
+
+    // Comportamento original para valores simples e coleções
+    return (
+      this.all().some((item) => {
+        if (item && typeof item === 'object') {
+          return Object.values(item).includes(value);
+        }
+        return item === value;
+      }) || this.db[value]
+    );
   }
 
   public robustSearch(value: any): any | false {
