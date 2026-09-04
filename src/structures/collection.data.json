@@ -110,7 +110,7 @@
           "periodo": "noite",
           "entrada": "18:20",
           "saida": "21:52",
-          "horario_lanche": "20:30",
+          "horario_lanche": "23:14",
           "horario_especial": {},
           "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
           "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
@@ -124,7 +124,7 @@
           "periodo": "manhã",
           "entrada": "06:30",
           "saida": "12:30",
-          "horario_lanche": "09:30",
+          "horario_lanche": "11:10",
           "horario_especial": {},
           "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
           "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
@@ -160,12 +160,20 @@
   ],
   "cardapio": [
     {
-      "prato": "MMMMMMMMMM",
-      "acompanhamento": "laranja em fatias",
+      "prato": "Strogonoff de carne",
+      "acompanhamento": "Fattias de maçã",
       "dia": "segunda-feira",
+      "especial": "true",
+      "description": "strogonoff de carne com fatias de maçã",
+      "id": "38Y2M6X"
+    },
+    {
+      "prato": "Feijoada",
+      "acompanhamento": "laranja em fatias",
+      "dia": "sexta-feira",
       "especial": "false",
       "description": "sua descricao...",
-      "id": "38Y2M6X"
+      "id": "YTPRZEO"
     }
   ],
   "accounts": {

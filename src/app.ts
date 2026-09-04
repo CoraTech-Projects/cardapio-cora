@@ -7,10 +7,8 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import c from 'cookie-parser';
 import { db } from './structures/db.js';
-import { initTempManage } from './utils/tempManage.js';
 import 'dotenv/config';
 
-initTempManage(db);
 /**
  * Rotas da API (ENDPOINTS).
  *

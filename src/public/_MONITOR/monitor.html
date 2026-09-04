@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monittor</title>
+    <script>
+
+      let checkSync;
+      let infos;
+      let clockSave = JSON.parse(localStorage.getItem("monitor_on_clock"));
+
+async function filledSync() {
+  if (infos) return;
+
+  const cardapio = await fetch('/cardapio' + needSync());
+  if (cardapio.status == 201) return;
+
+  infos = await cardapio.json();
+
+  let savedClock = JSON.parse(localStorage.getItem("monitor_on_clock"));
+  
+  if (!savedClock || !savedClock.timeToClear) {
+    const targetTime = Date.now() + 10 * 60 * 1000;
+    savedClock = { timeToClear: targetTime };
+    localStorage.setItem("monitor_on_clock", JSON.stringify(savedClock));
+  }
+
+  const remainingTime = savedClock.timeToClear - Date.now();
+
+  clearInterval(checkSync);
+
+  if (remainingTime > 0) {
+    setTimeout(clearAndVistorize, remainingTime);
+  } else {
+    clearAndVistorize();
+  }
+}
+
+function clearAndVistorize() {
+  checkSync = setInterval(filledSync, 3000);
+  infos = null;
+  localStorage.removeItem("monitor_on_clock"); 
+  clockSave = null;
+}
+
+function needSync() {
+  const currentClock = JSON.parse(localStorage.getItem("monitor_on_clock"));
+  return currentClock ? "" : "/sync";
+}
+
+      checkSync = setInterval(filledSync, 3000);
+
+      //sincronizar cardapio a cada 3 segundos, atua como rélogio para manter o cardapio atualizado em tempo real
+    </script>
+  </head>
+  <body></body>
+</html>
