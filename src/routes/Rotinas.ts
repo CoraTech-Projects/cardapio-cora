@@ -23,7 +23,8 @@ RotinasRouter.get('/', async (req: any, res: any) => {
 
 RotinasRouter.get('/:dia', async (req: any, res: any) => {
   const dia = req.params.dia.toLowerCase();
-  const horario_dia = db.get(ROTINAS_COLLECTION)?.[dia];
+
+  const horario_dia = db.get(ROTINAS_COLLECTION)?.[0]?.[dia];
   if (horario_dia) {
     res.status(200).json({
       status: 'success',
@@ -45,7 +46,7 @@ RotinasRouter.post('/update-rotina', async (req: any, res: any) => {
     return;
   }
 
-  const dayArr: any[] = db.get(ROTINAS_COLLECTION)?.[dia] || [];
+  const dayArr: any[] = db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
   const routineIndex = dayArr.findIndex(
     (r: any) => r.periodo === routineUpdateObject.periodo
   );
@@ -66,7 +67,7 @@ RotinasRouter.post('/update-rotina', async (req: any, res: any) => {
 
   res.status(200).json({
     message: 'Rotina atualizada com sucesso',
-    rotina: db.get(ROTINAS_COLLECTION)?.[dia]?.[routineIndex],
+    rotina: db.get(ROTINAS_COLLECTION)?.[0]?.[dia]?.[routineIndex],
   });
 });
 
@@ -74,9 +75,9 @@ RotinasRouter.put('/inserir-rotina', async (req: any, res: any) => {
   const { dia } = req.body;
   if (!dia) return res.status(400).json({ error: 'Dia é obrigatório' });
 
-  const dayRoutineContent: any[] = db.get(ROTINAS_COLLECTION)?.[dia] || [];
+  const dayRoutineContent: any[] = db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
   dayRoutineContent.push(req.body);
-  db.update(ROTINAS_COLLECTION, dia, dayRoutineContent);
+  db.update(ROTINAS_COLLECTION, `${dia}`, dayRoutineContent);
 
   res.status(200).json({
     status: 'success',
@@ -102,7 +103,10 @@ RotinasRouter.delete(
         .json({ message: 'Período e dia são obrigatórios.', status: 400 });
     }
 
-    const dayRoutineContent: any[] = db.get(ROTINAS_COLLECTION)?.[dia];
+    console.log('Dia:', dia);
+
+    const dayRoutineContent: any[] = db
+      .get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
     if (!dayRoutineContent) {
       return res
         .status(404)
@@ -122,7 +126,7 @@ RotinasRouter.delete(
     const [routineRemoved] = dayRoutineContent.splice(routineIndex, 1);
 
     if (dayRoutineContent.length === 0) {
-      db.delete(ROTINAS_COLLECTION, dia);
+      db.delete(ROTINAS_COLLECTION, `${dia}`);
     } else {
       db.update(ROTINAS_COLLECTION, dia, dayRoutineContent);
     }

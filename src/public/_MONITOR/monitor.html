@@ -4,54 +4,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monittor</title>
     <script>
+      const audio = document.createElement('audio');
+
+      audio.src = '/assets/audios/ringtone1.mp3';
 
       let checkSync;
       let infos;
-      let clockSave = JSON.parse(localStorage.getItem("monitor_on_clock"));
+      let clockSave = JSON.parse(localStorage.getItem('monitor_on_clock'));
 
-async function filledSync() {
-  if (infos) return;
+      async function filledSync() {
+        if (infos) return;
 
-  const cardapio = await fetch('/cardapio' + needSync());
-  if (cardapio.status == 201) return;
+        const cardapio = await fetch('/cardapio' + needSync());
+        if (cardapio.status == 201) return;
 
-  infos = await cardapio.json();
+        infos = await cardapio.json();
 
-  let savedClock = JSON.parse(localStorage.getItem("monitor_on_clock"));
-  
-  if (!savedClock || !savedClock.timeToClear) {
-    const targetTime = Date.now() + 10 * 60 * 1000;
-    savedClock = { timeToClear: targetTime };
-    localStorage.setItem("monitor_on_clock", JSON.stringify(savedClock));
-  }
+        let savedClock = JSON.parse(localStorage.getItem('monitor_on_clock'));
 
-  const remainingTime = savedClock.timeToClear - Date.now();
+        if (!savedClock || !savedClock.timeToClear) {
+          const targetTime = Date.now() + 10 * 60 * 1000;
+          savedClock = { timeToClear: targetTime };
+          localStorage.setItem('monitor_on_clock', JSON.stringify(savedClock));
+        }
 
-  clearInterval(checkSync);
+        const remainingTime = savedClock.timeToClear - Date.now();
 
-  if (remainingTime > 0) {
-    setTimeout(clearAndVistorize, remainingTime);
-  } else {
-    clearAndVistorize();
-  }
-}
+        initMonitor();
 
-function clearAndVistorize() {
-  checkSync = setInterval(filledSync, 3000);
-  infos = null;
-  localStorage.removeItem("monitor_on_clock"); 
-  clockSave = null;
-}
+        clearInterval(checkSync);
 
-function needSync() {
-  const currentClock = JSON.parse(localStorage.getItem("monitor_on_clock"));
-  return currentClock ? "" : "/sync";
-}
+        if (remainingTime > 0) {
+          setTimeout(clearAndVistorize, remainingTime);
+        } else {
+          clearAndVistorize();
+        }
+      }
+
+      function clearAndVistorize() {
+        checkSync = setInterval(filledSync, 3000);
+        infos = null;
+        localStorage.removeItem('monitor_on_clock');
+        clockSave = null;
+      }
+
+      function needSync() {
+        const currentClock = JSON.parse(
+          localStorage.getItem('monitor_on_clock')
+        );
+        return currentClock ? '' : '/sync';
+      }
 
       checkSync = setInterval(filledSync, 3000);
 
       //sincronizar cardapio a cada 3 segundos, atua como rélogio para manter o cardapio atualizado em tempo real
     </script>
+    <script src="/_MONITOR/monitor.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="monitor-content"></div>
+
+    <audio
+      src="/assets/audios/ringtone1.mp3"
+      id="ringtone"
+      allow="autoplay"
+      controls
+    ></audio>
+  </body>
 </html>

@@ -6,14 +6,33 @@ const CARDAPIO_COLLECTION = 'cardapio';
 
 CardapioRouter.get('/', async (req: any, res: any) => {
   const cardapio = db.get(CARDAPIO_COLLECTION);
+  const allCardapio = req.query.all === 'true';
   const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
-  const horarioHoje = db.get("rotinas")[0][hoje];
+  const horarioHoje = db.get('rotinas')[0][hoje];
+  const saberTurno = () => {
+    const date = new Date();
+    const hours = date.getHours();
 
-  if (cardapio) {
+    if (hours >= 6 && hours <= 12) return 'manhã';
+    else if (hours >= 12 && hours <= 18) return 'tarde';
+    else 'noite';
+  };
+
+  if (allCardapio) {
     res.status(200).json({
       status: 'success',
-      rotina: horarioHoje,
+      rotina: horarioHoje.find(
+        (x: Record<string, any>) => x.periodo == saberTurno()
+      ),
       cardapio: cardapio,
+    });
+  } else if (cardapio) {
+    res.status(200).json({
+      status: 'success',
+      rotina: horarioHoje.find(
+        (x: Record<string, any>) => x.periodo == saberTurno()
+      ),
+      cardapio: cardapio.find((x: Record<string, any>) => x.dia == hoje),
     });
   } else {
     res.status(404).json({ error: 'Cardápio não encontrado' });
@@ -104,27 +123,27 @@ CardapioRouter.delete('/delete-cardapio', async (req: any, res: any) => {
 });
 
 CardapioRouter.get('/sync', async (req: any, res: any) => {
-  const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
-  const horasEMinutos = (() => {
-    const date = new Date();
-    return `${date.getHours()}:${date.getMinutes()}`;
-  })();
+  const date = new Date();
+  const hoje = date.toLocaleDateString('pt-BR', { weekday: 'long' });
+  const horasEMinutos: String = `${date.getHours()}:${date.getMinutes()}`;
   const db_COLLECTION = 'rotinas ';
-  const horarioHoje = db.get("rotinas")[0][hoje];
+  const horarioHoje = db.get('rotinas')[0][hoje];
 
   if (!horarioHoje || typeof horarioHoje !== 'object') {
     res.status(404).json({ error: `No routines to ${db_COLLECTION + hoje}` });
     return;
   }
 
-  const cardapioHoje = db.get('cardapio')?.find((x: any) => x.dia == hoje) || {};
+  const cardapioHoje =
+    db.get('cardapio')?.find((x: any) => x.dia == hoje) || {};
 
   if (!cardapioHoje || typeof cardapioHoje !== 'object') {
     res.status(404).json({ error: `no routines to ${hoje}` });
     return;
   }
 
-  if (!horarioHoje.find((x:any)=>x.horario_lanche == horasEMinutos)) return res.status(201).json({ status: 201 });
+  if (!horarioHoje.find((x: any) => x.horario_lanche == horasEMinutos))
+    return res.status(201).json({ status: 201 });
 
   const responseData = {
     horario: horarioHoje,
