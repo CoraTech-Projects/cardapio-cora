@@ -21,15 +21,14 @@ CardapioRouter.get('/', async (req: any, res: any) => {
   if (allCardapio) {
     res.status(200).json({
       status: 'success',
-      rotina: horarioHoje.find(
-        (x: Record<string, any>) => x.periodo == saberTurno()
-      ),
       cardapio: cardapio,
     });
   } else if (cardapio) {
+    const diaUtil = !['sabado', 'domingo'].includes(hoje);
     res.status(200).json({
       status: 'success',
-      rotina: horarioHoje.find(
+      diaUtil,
+      rotina: horarioHoje?.find(
         (x: Record<string, any>) => x.periodo == saberTurno()
       ),
       cardapio: cardapio.find((x: Record<string, any>) => x.dia == hoje),

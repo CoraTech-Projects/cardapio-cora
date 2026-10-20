@@ -82,66 +82,42 @@
       "sexta-feira": [
         {
           "dia": "sexta-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "11:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
+          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
+          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
+          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+        },
+        {
+          "dia": "sexta-feira",
           "periodo": "tarde",
-          "entrada": "12:40",
+          "entrada": "12:30",
           "saida": "17:30",
           "horario_lanche": "15:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "",
-          "mensagem_destaque": "",
-          "mensagem_aviso": "",
-          "mensagem_coordenacao": ""
+          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
+          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
+          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
+          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+        },
+        {
+          "dia": "sexta-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "21:52",
+          "horario_lanche": "23:14",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
+          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
+          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
+          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
         }
       ]
-    },
-    [],
-    [],
-    [
-      {
-        "dia": "sexta-feira",
-        "periodo": "tarde",
-        "entrada": "12:40",
-        "saida": "17:30",
-        "horario_lanche": "15:30",
-        "horario_especial": {},
-        "mensagem_boas_vindas": "",
-        "mensagem_destaque": "",
-        "mensagem_aviso": "",
-        "mensagem_coordenacao": ""
-      }
-    ],
-    [
-      {
-        "dia": "sexta-feira",
-        "periodo": "tarde",
-        "entrada": "12:40",
-        "saida": "17:30",
-        "horario_lanche": "15:30",
-        "horario_especial": {},
-        "mensagem_boas_vindas": "",
-        "mensagem_destaque": "",
-        "mensagem_aviso": "",
-        "mensagem_coordenacao": ""
-      }
-    ],
-    [],
-    [],
-    [],
-    [],
-    [
-      {
-        "dia": "sexta-feira",
-        "periodo": "tarde",
-        "entrada": "12:40",
-        "saida": "17:30",
-        "horario_lanche": "15:30",
-        "horario_especial": {},
-        "mensagem_boas_vindas": "",
-        "mensagem_destaque": "",
-        "mensagem_aviso": "",
-        "mensagem_coordenacao": ""
-      }
-    ]
+    }
   ],
   "cardapio": [
     {

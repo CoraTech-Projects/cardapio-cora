@@ -5,6 +5,9 @@ cls
 
 powershell -Command "$proc = Get-NetTCPConnection -LocalPort %PORT% -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess; if ($proc) { Stop-Process -Id $proc -Force; Write-Host 'SUCCESS: Port %PORT% terminated.' -ForegroundColor Cyan } else { Write-Host 'INFO: Port %PORT% is clear.' -ForegroundColor Green }"
 
+echo [VERSION] Checking for updates...
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0check-version.ps1"
+
 echo [BUILD] Running Prettier formatter...
 call npx prettier . --write
 

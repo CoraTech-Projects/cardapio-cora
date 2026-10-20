@@ -7,7 +7,7 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "start.bat",
+    "start": "scripts\\start.bat",
     "runD": "tsc | node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

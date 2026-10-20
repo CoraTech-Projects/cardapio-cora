@@ -105,8 +105,8 @@ RotinasRouter.delete(
 
     console.log('Dia:', dia);
 
-    const dayRoutineContent: any[] = db
-      .get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
+    const dayRoutineContent: any[] =
+      db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
     if (!dayRoutineContent) {
       return res
         .status(404)

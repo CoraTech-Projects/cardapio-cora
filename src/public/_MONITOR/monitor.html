@@ -3,6 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monittor</title>
+    <link rel="stylesheet" href="/_MONITOR/monitor.css" />
     <script>
       const audio = document.createElement('audio');
 
@@ -62,13 +63,17 @@
     <script src="/_MONITOR/monitor.js"></script>
   </head>
   <body>
-    <div id="monitor-content"></div>
-
-    <audio
-      src="/assets/audios/ringtone1.mp3"
-      id="ringtone"
-      allow="autoplay"
-      controls
-    ></audio>
+    <div id="monitor-content">
+      <h1 id="monitor-horas" onclick="startSessaoButique()">00:00:00</h1>
+      <p id="turno">Turno da Manhã</p>
+      <div class="frase">
+        <img src="" alt="" srcset="" />
+        <h3>Cora Coralina</h3>
+        <p>
+          “Nada do que vivemos tem sentido, se não tocarmos o coração das
+          pessoas.”
+        </p>
+      </div>
+    </div>
   </body>
 </html>
