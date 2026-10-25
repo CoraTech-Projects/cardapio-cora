@@ -1,155 +1,185 @@
 import express from 'express';
 import { db } from '../structures/db.js';
+import { requireAuth } from '../middlawere/OAuth.js';
 
 const CardapioRouter = express.Router();
 const CARDAPIO_COLLECTION = 'cardapio';
+
+/**
+ * Função de sanitização contra XSS e injeção de HTML
+ */
+function sanitizeText(value: any): string {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/<[^>]*>/g, '') // remove tags HTML
+    .trim();
+}
 
 CardapioRouter.get('/', async (req: any, res: any) => {
   const cardapio = db.get(CARDAPIO_COLLECTION);
   const allCardapio = req.query.all === 'true';
   const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long' });
-  const horarioHoje = db.get('rotinas')[0][hoje];
-  const saberTurno = () => {
-    const date = new Date();
-    const hours = date.getHours();
+  const rotinas = db.get('rotinas');
+  const horarioHoje = rotinas && rotinas[0] ? rotinas[0][hoje] : null;
 
-    if (hours >= 6 && hours <= 12) return 'manhã';
-    else if (hours >= 12 && hours <= 18) return 'tarde';
-    else 'noite';
+  const saberTurno = () => {
+    const hours = new Date().getHours();
+    if (hours >= 6 && hours < 12) return 'manhã';
+    else if (hours >= 12 && hours < 18) return 'tarde';
+    return 'noite';
   };
 
   if (allCardapio) {
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       cardapio: cardapio,
     });
   } else if (cardapio) {
-    const diaUtil = !['sabado', 'domingo'].includes(hoje);
-    res.status(200).json({
+    const isDemo = req.query.demo === 'true';
+    const diaUtil = !['sábado', 'sabado', 'domingo'].includes(hoje.toLowerCase());
+    const cardapioHoje =
+      cardapio.find((x: Record<string, any>) => x.dia.toLowerCase() == hoje.toLowerCase()) ||
+      (isDemo && Array.isArray(cardapio) && cardapio.length > 0
+        ? cardapio[0]
+        : null);
+
+    const horarioData = horarioHoje || (isDemo && rotinas && rotinas[0] ? rotinas[0]['segunda-feira'] : null);
+    const rotinaTurno =
+      horarioData?.find((x: Record<string, any>) => x.periodo == saberTurno()) ||
+      (isDemo && horarioData && horarioData.length > 0 ? horarioData[0] : null);
+
+    return res.status(200).json({
       status: 'success',
       diaUtil,
-      rotina: horarioHoje?.find(
-        (x: Record<string, any>) => x.periodo == saberTurno()
-      ),
-      cardapio: cardapio.find((x: Record<string, any>) => x.dia == hoje),
+      rotina: rotinaTurno,
+      cardapio: cardapioHoje,
+      settings: db.get('settings'),
     });
   } else {
-    res.status(404).json({ error: 'Cardápio não encontrado' });
+    return res.status(404).json({ error: 'Cardápio não encontrado' });
   }
 });
 
-CardapioRouter.post('/update-cardapio', async (req: any, res: any) => {
-  console.log(req.body);
+CardapioRouter.post('/update-cardapio', requireAuth, async (req: any, res: any) => {
   const { dia, prato, acompanhamento, especial, description } = req.body;
+  const cleanDia = sanitizeText(dia);
 
-  if (!db.has(`${CARDAPIO_COLLECTION}.${dia}`)) {
-    res.status(404).json({ error: 'Dia não encontrado no cardápio' });
-    return;
+  if (!cleanDia || !db.has(`${CARDAPIO_COLLECTION}.${cleanDia}`)) {
+    return res.status(404).json({ error: 'Dia não encontrado no cardápio' });
   }
 
-  const existingCardapio = db.get(CARDAPIO_COLLECTION)?.[dia] || {};
+  const existingCardapio = db.get(CARDAPIO_COLLECTION)?.[cleanDia] || {};
   const updatedCardapio: any = {
-    prato: prato ?? existingCardapio.prato,
-    especial: especial ?? existingCardapio.especial,
-    acompanhamento: acompanhamento ?? existingCardapio.acompanhamento,
-    dia: dia ?? existingCardapio.dia,
-    description: description ?? existingCardapio.description,
+    prato: prato !== undefined ? sanitizeText(prato) : existingCardapio.prato,
+    especial:
+      especial !== undefined
+        ? String(especial).toLowerCase() === 'true' || especial === true
+        : existingCardapio.especial,
+    acompanhamento:
+      acompanhamento !== undefined
+        ? sanitizeText(acompanhamento)
+        : existingCardapio.acompanhamento,
+    dia: cleanDia,
+    description:
+      description !== undefined
+        ? sanitizeText(description)
+        : existingCardapio.description,
   };
 
   Object.keys(updatedCardapio).forEach((field) =>
-    db.update(CARDAPIO_COLLECTION, `${dia}.${field}`, updatedCardapio[field])
+    db.update(CARDAPIO_COLLECTION, `${cleanDia}.${field}`, updatedCardapio[field])
   );
 
-  res.status(200).json({
+  return res.status(200).json({
     message: 'Cardápio atualizado com sucesso',
-    cardapio: db.get(CARDAPIO_COLLECTION)?.[dia],
+    cardapio: db.get(CARDAPIO_COLLECTION)?.[cleanDia],
   });
 });
 
-CardapioRouter.post('/inserir-cardapio', async (req: any, res: any) => {
+CardapioRouter.post('/inserir-cardapio', requireAuth, async (req: any, res: any) => {
   const { dia, prato, acompanhamento, description, especial } = req.body;
-  if (!dia || !prato || !acompanhamento || especial === undefined) {
-    res.status(400).json({ error: 'Todos os campos são obrigatórios' });
-    return;
+  const cleanDia = sanitizeText(dia);
+  const cleanPrato = sanitizeText(prato);
+  const cleanAcompanhamento = sanitizeText(acompanhamento);
+  const cleanDescription = sanitizeText(description);
+
+  if (!cleanDia || !cleanPrato || !cleanAcompanhamento || especial === undefined) {
+    return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
   }
 
-  if (db.has(`${CARDAPIO_COLLECTION}.${dia}`)) {
-    res.status(409).json({ error: 'Dia já existe no cardápio' });
-    return;
+  if (db.has(`${CARDAPIO_COLLECTION}.${cleanDia}`)) {
+    return res.status(409).json({ error: 'Dia já existe no cardápio' });
   }
 
-  function gerateId(size = 6) {
+  function generateId(size = 7) {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let resultado = '';
-
     for (let i = 0; i < size; i++) {
-      const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
-      resultado += caracteres.charAt(indiceAleatorio);
+      resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     }
-
     return resultado;
   }
 
   const newCardapio = {
-    prato,
-    acompanhamento,
-    dia,
-    especial,
-    description,
-    id: gerateId(7),
+    prato: cleanPrato,
+    acompanhamento: cleanAcompanhamento,
+    dia: cleanDia,
+    especial: String(especial).toLowerCase() === 'true' || especial === true,
+    description: cleanDescription,
+    id: generateId(7),
   };
 
-  console.log(newCardapio);
-  db.update(CARDAPIO_COLLECTION, dia, newCardapio);
-  res
+  db.update(CARDAPIO_COLLECTION, cleanDia, newCardapio);
+  return res
     .status(201)
     .json({ message: 'Cardápio inserido com sucesso', cardapio: newCardapio });
 });
 
-CardapioRouter.delete('/delete-cardapio', async (req: any, res: any) => {
+CardapioRouter.delete('/delete-cardapio', requireAuth, async (req: any, res: any) => {
   const { id } = req.body;
-  if (!id) {
-    res.status(400).json({ error: "Campo 'dia' é obrigatório" });
-    return;
+  const cleanId = sanitizeText(id);
+  if (!cleanId) {
+    return res.status(400).json({ error: "Campo 'id' ou 'dia' é obrigatório" });
   }
-  if (!db.has(`${CARDAPIO_COLLECTION}.${id}`)) {
-    res.status(404).json({ error: 'Dia não encontrado no cardápio' });
-    return;
+  if (!db.has(`${CARDAPIO_COLLECTION}.${cleanId}`)) {
+    return res.status(404).json({ error: 'Item não encontrado no cardápio' });
   }
 
-  db.delete(CARDAPIO_COLLECTION, id);
-  res.status(200).json({ message: 'Cardápio deletado com sucesso' });
+  db.delete(CARDAPIO_COLLECTION, cleanId);
+  return res.status(200).json({ message: 'Cardápio deletado com sucesso' });
 });
 
 CardapioRouter.get('/sync', async (req: any, res: any) => {
   const date = new Date();
   const hoje = date.toLocaleDateString('pt-BR', { weekday: 'long' });
-  const horasEMinutos: String = `${date.getHours()}:${date.getMinutes()}`;
-  const db_COLLECTION = 'rotinas ';
-  const horarioHoje = db.get('rotinas')[0][hoje];
+  const horas = String(date.getHours()).padStart(2, '0');
+  const minutos = String(date.getMinutes()).padStart(2, '0');
+  const horasEMinutos = `${horas}:${minutos}`;
+  const rotinas = db.get('rotinas');
+  const horarioHoje = rotinas && rotinas[0] ? rotinas[0][hoje] : null;
 
   if (!horarioHoje || typeof horarioHoje !== 'object') {
-    res.status(404).json({ error: `No routines to ${db_COLLECTION + hoje}` });
-    return;
+    return res.status(404).json({ error: `Sem rotinas para ${hoje}` });
   }
 
   const cardapioHoje =
-    db.get('cardapio')?.find((x: any) => x.dia == hoje) || {};
+    db.get('cardapio')?.find((x: any) => x.dia.toLowerCase() == hoje.toLowerCase()) || null;
 
   if (!cardapioHoje || typeof cardapioHoje !== 'object') {
-    res.status(404).json({ error: `no routines to ${hoje}` });
-    return;
+    return res.status(404).json({ error: `Sem cardápio para ${hoje}` });
   }
 
-  if (!horarioHoje.find((x: any) => x.horario_lanche == horasEMinutos))
+  if (!horarioHoje.find((x: any) => x.horario_lanche == horasEMinutos)) {
     return res.status(201).json({ status: 201 });
+  }
 
   const responseData = {
     horario: horarioHoje,
     cardapio: cardapioHoje,
+    settings: db.get('settings'),
   };
 
-  res.status(200).json(responseData);
+  return res.status(200).json(responseData);
 });
 
 export { CardapioRouter };

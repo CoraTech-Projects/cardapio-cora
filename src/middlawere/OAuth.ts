@@ -1,48 +1,75 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import bg from 'bcryptjs';
-const { SESSION_SECRET, COOKIE_SECRET } = process.env;
 
-function tokenCreator(userId: string) {
-  if (!SESSION_SECRET)
-    console.warn(
-      'SESSION_SECRET não definido no .env, isso pode causar problemas de segurança!'
-    );
-  if (!COOKIE_SECRET)
-    console.warn(
-      'COOKIE_SECRET não definido no .env, isso pode causar problemas de segurança!'
-    );
+const JWT_SECRET: string =
+  process.env.SESSION_SECRET ||
+  process.env.COOKIE_SECRET as string;
 
-  let tokenized;
-
+function tokenCreator(userId: string): string {
   try {
-    tokenized = jwt.sign({ id: userId }, SESSION_SECRET || '', {
-      expiresIn: '1h',
+    return jwt.sign({ id: userId }, JWT_SECRET as string, {
+      expiresIn: '8h',
     });
   } catch (error) {
     console.error('Erro ao criar token:', error);
+    return '';
   }
-
-  return tokenized;
 }
 
+/**
+ * Middleware global de contexto de autenticação:
+ * Se houver token válido, anexa req.user. Não bloqueia rotas públicas da TV/monitor.
+ */
 function AuthenticationOnToken(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  if (req.url.includes('/login')) return next();
-  /*
-    const token = req.cookies.token;
-    if(!token) return res.status(401).json({ error: "Token não fornecido" });
-
-    jwt.verify(token, COOKIE_SECRET || "", (err: any, decoded: any) => {
-        if(err) return res.status(401).json({ error: "Token inválido" });
-        req.body.userId = decoded.id;
-        next();
-    });
-*/
+  const token = (req as any).cookies?.token;
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      (req as any).user = decoded;
+    } catch {
+      res.clearCookie('token');
+    }
+  }
   next();
 }
 
-export { tokenCreator, AuthenticationOnToken as T };
+/**
+ * Middleware rigoroso para proteção de rotas administrativas e de mutação (POST/PUT/DELETE).
+ * Impede que usuários não autenticados na rede local alterem cardápio ou rotinas.
+ */
+function requireAuth(req: Request, res: Response, next: NextFunction) {
+  const token =
+    (req as any).cookies?.token ||
+    req.headers['authorization']?.replace(/^Bearer\s+/i, '');
+
+  if (!token) {
+    if (req.method === 'GET' && !req.xhr && req.accepts('html')) {
+      return res.redirect('/user/login');
+    }
+    return res.status(401).json({
+      status: 401,
+      error: 'Acesso não autorizado. Faça login como administrador.',
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    (req as any).user = decoded;
+    return next();
+  } catch {
+    res.clearCookie('token');
+    if (req.method === 'GET' && !req.xhr && req.accepts('html')) {
+      return res.redirect('/user/login');
+    }
+    return res.status(401).json({
+      status: 401,
+      error: 'Sessão expirada ou token inválido. Faça login novamente.',
+    });
+  }
+}
+
+export { tokenCreator, AuthenticationOnToken as T, requireAuth };

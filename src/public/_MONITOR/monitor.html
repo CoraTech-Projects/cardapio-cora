@@ -1,48 +1,86 @@
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monittor</title>
-    <link rel="stylesheet" href="/_MONITOR/monitor.css" />
+    <title>Monitor - Cardápio Cora</title>
+    <link rel="stylesheet" href="/_MONITOR/monitor.css?v=4" />
     <script>
       const audio = document.createElement('audio');
-
       audio.src = '/assets/audios/ringtone1.mp3';
 
       let checkSync;
       let infos;
       let clockSave = JSON.parse(localStorage.getItem('monitor_on_clock'));
 
+      function isDemo() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('demo') === 'true' || urlParams.has('demo');
+      }
+
+      function updateClock() {
+        const now = new Date();
+        const horasEl = document.getElementById('monitor-horas');
+        if (horasEl) {
+          horasEl.textContent = now.toLocaleTimeString('pt-BR');
+        }
+
+        const turnoEl = document.getElementById('turno');
+        if (turnoEl) {
+          const hours = now.getHours();
+          if (hours >= 6 && hours < 12) {
+            turnoEl.textContent = 'Turno da Manhã';
+          } else if (hours >= 12 && hours < 18) {
+            turnoEl.textContent = 'Turno da Tarde';
+          } else {
+            turnoEl.textContent = 'Turno da Noite';
+          }
+        }
+      }
+
       async function filledSync() {
         if (infos) return;
 
-        const cardapio = await fetch('/cardapio' + needSync());
-        if (cardapio.status == 201) return;
+        try {
+          const query = isDemo() ? '?demo=true' : needSync();
+          const response = await fetch('/cardapio' + query);
+          if (!response.ok || response.status === 201) return;
 
-        infos = await cardapio.json();
+          const data = await response.json();
+          if (!data || !data.cardapio || !data.cardapio.prato) return;
 
-        let savedClock = JSON.parse(localStorage.getItem('monitor_on_clock'));
+          infos = data;
 
-        if (!savedClock || !savedClock.timeToClear) {
-          const targetTime = Date.now() + 10 * 60 * 1000;
-          savedClock = { timeToClear: targetTime };
-          localStorage.setItem('monitor_on_clock', JSON.stringify(savedClock));
-        }
+          let savedClock = JSON.parse(localStorage.getItem('monitor_on_clock'));
 
-        const remainingTime = savedClock.timeToClear - Date.now();
+          if (!savedClock || !savedClock.timeToClear) {
+            const targetTime = Date.now() + 10 * 60 * 1000;
+            savedClock = { timeToClear: targetTime };
+            localStorage.setItem(
+              'monitor_on_clock',
+              JSON.stringify(savedClock)
+            );
+          }
 
-        initMonitor();
+          const remainingTime = savedClock.timeToClear - Date.now();
 
-        clearInterval(checkSync);
+          initMonitor();
 
-        if (remainingTime > 0) {
-          setTimeout(clearAndVistorize, remainingTime);
-        } else {
-          clearAndVistorize();
+          clearInterval(checkSync);
+
+          if (remainingTime > 0) {
+            setTimeout(clearAndVistorize, remainingTime);
+          } else {
+            clearAndVistorize();
+          }
+        } catch (err) {
+          console.warn('[MONITOR] Erro na sincronização:', err);
         }
       }
 
       function clearAndVistorize() {
+        const cardapioDiv = document.getElementById('cardapio-exibicao');
+        if (cardapioDiv) cardapioDiv.style.display = 'none';
+
         checkSync = setInterval(filledSync, 3000);
         infos = null;
         localStorage.removeItem('monitor_on_clock');
@@ -56,18 +94,21 @@
         return currentClock ? '' : '/sync';
       }
 
-      checkSync = setInterval(filledSync, 3000);
-
-      //sincronizar cardapio a cada 3 segundos, atua como rélogio para manter o cardapio atualizado em tempo real
+      setInterval(updateClock, 1000);
+      window.addEventListener('DOMContentLoaded', () => {
+        updateClock();
+        checkSync = setInterval(filledSync, 3000);
+        filledSync();
+      });
     </script>
-    <script src="/_MONITOR/monitor.js"></script>
+    <script src="/_MONITOR/monitor.js?v=3"></script>
   </head>
   <body>
     <div id="monitor-content">
-      <h1 id="monitor-horas" onclick="startSessaoButique()">00:00:00</h1>
+      <h1 id="monitor-horas">00:00:00</h1>
       <p id="turno">Turno da Manhã</p>
       <div class="frase">
-        <img src="" alt="" srcset="" />
+        <img src="" alt="" />
         <h3>Cora Coralina</h3>
         <p>
           “Nada do que vivemos tem sentido, se não tocarmos o coração das

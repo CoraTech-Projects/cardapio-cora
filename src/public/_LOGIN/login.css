@@ -17,6 +17,9 @@ body {
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra suave para dar profundidade */
   transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 370px;
 }
 
 .login-box .logo {
@@ -47,22 +50,26 @@ body {
 
 /* Labels (Identificador / Senha) */
 .login-box h4 {
-  margin: 0 0 6px 0;
+  margin: 0 auto 6px auto;
   color: rgba(0, 84, 149, 0.8);
   text-align: left;
   font-size: 14px;
   font-weight: 600;
+  width: 100%;
+  max-width: 320px;
 }
-/* Container do Input (Fundo cinza) - Aumentado para dar mais espaço */
+
+/* Container do Input (Fundo cinza) */
 .login-box .text-area {
   padding: 0 12px;
   background: #ebebeb;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  width: 320px; /* Aumentado de 246px para 320px */
+  width: 100%;
+  max-width: 320px;
   height: 45px;
-  margin-bottom: 18px;
+  margin: 0 auto 18px auto;
   box-sizing: border-box;
   transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
 }
@@ -74,7 +81,7 @@ body {
   padding-right: 10px;
   color: #005595;
   border-right: 1.5px solid rgba(0, 84, 149, 0.3);
-  height: 50%; /* Linha vertical centralizada e elegante */
+  height: 50%;
 }
 
 /* O Campo de digitação real */
@@ -83,8 +90,8 @@ body {
   outline: none;
   background: transparent;
   height: 100%;
-  width: 100%; /* Ocupa todo o espaço restante após o ícone */
-  padding-left: 10px; /* Afasta o texto digitado do ícone */
+  width: 100%;
+  padding-left: 10px;
   font-size: 14px;
   color: #333;
   box-sizing: border-box;
@@ -104,11 +111,33 @@ body {
   color: rgb(0, 0, 0);
 }
 
-/* Botão Entrar - Acompanha a nova largura para manter o alinhamento perfeito */
+/* Mensagem de Erro Responsiva */
+.error-message {
+  display: none;
+  color: #b91c1c;
+  background-color: #fee2e2;
+  border: 1px solid #f87171;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 10px auto 14px auto;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.error-message.show {
+  display: block;
+}
+
+/* Botão Entrar */
 .login-box .confirm {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 12px;
-  width: 320px; /* Aumentado de 246px para 320px */
+  width: 100%;
+  max-width: 320px;
   border: none;
   border-radius: 8px;
   background: #005595;
@@ -119,25 +148,6 @@ body {
   transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
 }
 
-.error-message {
-  color: #d8000c;
-  background-color: #ffbaba;
-  padding: 10px;
-  border-radius: 5px;
-  bottom: 50px;
-  right: 510px;
-  margin-right: 20px;
-  font-size: 0px;
-  opacity: 0;
-  position: absolute;
-  transition: 0.5s all cubic-bezier(0.25, 1.5, 0.5, 1);
-}
-
-.error-message.show {
-  font-size: 14px;
-  opacity: 1;
-}
-
 /* Feedback visual ao passar o mouse e clicar */
 .login-box .confirm:hover {
   background: #004477;
@@ -145,13 +155,13 @@ body {
 }
 
 .login-box .confirm:active {
-  transform: scale(0.98); /* Leve efeito de clique */
+  transform: scale(0.98);
 }
 
 .login-box .confirm:disabled {
   background: #002642;
   cursor: not-allowed;
-  transform: none; /* Sem efeito de clique quando desabilitado */
+  transform: none;
 }
 
 .login-box .text-area:hover {
@@ -162,7 +172,7 @@ footer {
   margin: 5px 0 0 0;
   color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
 }
 
 footer div {
