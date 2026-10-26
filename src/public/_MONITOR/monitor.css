@@ -33,27 +33,123 @@ body {
   text-align: center;
 }
 
+#cardapio-exibicao {
+  margin-top: 25px;
+  text-align: center;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  min-height: 130px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.slide-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cardapio-exibicao h2 {
+  font-size: 2.5rem;
+  margin: 10px 0 8px 0;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.slide-subtexto {
+  font-size: 1.25rem;
+  opacity: 0.8;
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.4;
+}
+
+.badge-merenda {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge-aviso {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.12);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.aviso-titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #facc15;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+.aviso-texto {
+  font-size: 1.25rem;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.aviso-rodape {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
 #monitor-content .frase {
   background-color: rgba(45, 45, 56, 0.422);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 1.75rem 2.5rem;
-  max-width: 520px;
-  width: 100%;
+  border-radius: 14px;
+  padding: 10px 22px;
+  max-width: 480px;
+  width: auto;
   position: absolute;
   bottom: 20px;
-  right: 55vh;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 #monitor-content .frase:hover {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-#monitor-content h3 {
+#monitor-content .frase img:not([src]),
+#monitor-content .frase img[src=''] {
+  display: none;
+}
+
+#monitor-content .frase h3 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+}
+
+#monitor-content .frase p {
   margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }

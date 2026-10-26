@@ -9,8 +9,8 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.ico" />
-    <link rel="stylesheet" href="/_ADMIN/admin.css" />
-    <script src="/_ADMIN/admin.js" defer></script>
+    <link rel="stylesheet" href="/_ADMIN/admin.css?v=4" />
+    <script src="/_ADMIN/admin.js?v=4" defer></script>
   </head>
   <body data-theme="light">
     <aside>
@@ -35,10 +35,8 @@
           >
         </li>
         <li class="menu-item">
-          <a href="#"
-            ><span class="material-icons-round" style="opacity: 0.5"
-              >settings</span
-            >Configurações</a
+          <a href="#configuracoes"
+            ><span class="material-icons-round">settings</span>Configurações</a
           >
         </li>
         <li class="menu-item" style="margin-top: 20px">
@@ -144,6 +142,57 @@
           </div>
         </section>
       </main>
+    </div>
+
+    <!-- Modal de Visualização da Smart TV & Pareamento -->
+    <div id="modalVisualizarTV" class="modal-overlay">
+      <div class="modal-content modal-tv-preview">
+        <div class="modal-header">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="material-icons-round" style="color: var(--sidebar-ativo); font-size: 26px;">tv</span>
+            <h2>Transmissão ao Vivo da TV</h2>
+          </div>
+          <button class="btn-icon" onclick="fecharModalVisualizarTV()">
+            <span class="material-icons-round">close</span>
+          </button>
+        </div>
+
+        <div class="tv-frame-wrapper">
+          <div class="tv-bezel">
+            <div class="tv-status-badge">
+              <span class="pulse-dot"></span>
+              <span>Ao Vivo • Quiosque Refeitório</span>
+            </div>
+            <div class="tv-screen-container">
+              <iframe id="tvPreviewIframe" src="/monitor?demo=true" class="tv-screen" scrolling="no"></iframe>
+            </div>
+          </div>
+          <div class="tv-stand"></div>
+        </div>
+
+        <div class="tv-info-grid">
+          <div class="tv-token-box">
+            <span class="tv-info-label">Código de Pareamento</span>
+            <div class="tv-token-display">
+              <code id="tvTokenValue">CECC-842K91</code>
+              <button class="btn-copy-token" onclick="copiarTokenTV()" title="Copiar código">
+                <span class="material-icons-round">content_copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tv-actions-box">
+            <button class="btn-tv-action secondary" onclick="copiarLinkMonitor()">
+              <span class="material-icons-round">link</span>
+              <span>Copiar Link</span>
+            </button>
+            <button class="btn-tv-action primary" onclick="abrirMonitorNovaAba()">
+              <span class="material-icons-round">open_in_new</span>
+              <span>Abrir Tela Cheia</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

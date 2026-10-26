@@ -1,8 +1,82 @@
 {
   "rotinas": [
     {
-      "segunda-feira": [],
-      "terça-feira": [],
+      "segunda-feira": [
+        {
+          "dia": "segunda-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "09:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia, estudantes! Uma excelente semana de estudos a todos no Colégio Estadual Cora Coralina.",
+          "mensagem_destaque": "Merenda de hoje: Galinhada tradicional com salada fresca preparada com carinho pelas merendeiras.",
+          "mensagem_aviso": "Por favor, higienizem as mãos antes de entrar na fila e mantenham a organização no refeitório.",
+          "mensagem_coordenacao": "Plantão da Coordenação Pedagógica aberto no Bloco A para atendimento aos alunos e entrega de atestados."
+        },
+        {
+          "dia": "segunda-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Boa tarde a todas as turmas do turno vespertino! Bom início de semana letiva.",
+          "mensagem_destaque": "Merenda da tarde servida pontualmente às 15h30. Não se esqueça de pegar sua fruta.",
+          "mensagem_aviso": "Uso obrigatório do uniforme escolar completo nas salas de aula e dependências da escola.",
+          "mensagem_coordenacao": "Inscrições abertas na Coordenação para os Jogos Escolares e oficinas de xadrez."
+        },
+        {
+          "dia": "segunda-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "22:00",
+          "horario_lanche": "20:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Boa noite aos estudantes da EJA e Ensino Médio Noturno! Sejam bem-vindos a mais uma jornada de conquistas.",
+          "mensagem_destaque": "Jantar escolar reforçado servido às 20h30 no refeitório central.",
+          "mensagem_aviso": "Após a refeição, deposite seu prato, talher e copo na janela de recolhimento da cozinha.",
+          "mensagem_coordenacao": "Secretaria Escolar aberta até às 21h para emissão de declarações de matrícula e passe livre."
+        }
+      ],
+      "terça-feira": [
+        {
+          "dia": "terça-feira",
+          "periodo": "manhã",
+          "entrada": "06:30",
+          "saida": "12:30",
+          "horario_lanche": "09:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Bom dia, alunos e professores! Que a nossa terça-feira seja repleta de aprendizado e cooperação.",
+          "mensagem_destaque": "Merenda nutritiva: Carne moída com legumes, arroz e feijão quentinhos do PNAE.",
+          "mensagem_aviso": "Evitem o desperdício de comida: sirva-se apenas da quantidade que você for consumir.",
+          "mensagem_coordenacao": "Biblioteca Monteiro Lobato aberta para empréstimo e devolução de livros didáticos até o meio-dia."
+        },
+        {
+          "dia": "terça-feira",
+          "periodo": "tarde",
+          "entrada": "12:30",
+          "saida": "17:30",
+          "horario_lanche": "15:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Boa tarde, estudantes! Mantenham o foco e a atenção nas atividades de hoje.",
+          "mensagem_destaque": "Cardápio da tarde balanceado com acompanhamento de legumes da horta escolar.",
+          "mensagem_aviso": "Proibido correr nos corredores e no pátio do refeitório durante o horário de troca de aula.",
+          "mensagem_coordenacao": "Reunião do Grêmio Estudantil hoje às 17h45 no anfiteatro."
+        },
+        {
+          "dia": "terça-feira",
+          "periodo": "noite",
+          "entrada": "18:20",
+          "saida": "22:00",
+          "horario_lanche": "20:30",
+          "horario_especial": {},
+          "mensagem_boas_vindas": "Boa noite, alunos da noite! Valorizamos o empenho e a dedicação de cada um de vocês.",
+          "mensagem_destaque": "Refeição noturna balanceada para repor as energias após o dia de trabalho.",
+          "mensagem_aviso": "Mantenham as salas e as mesas do refeitório limpas e organizadas para o próximo colega.",
+          "mensagem_coordenacao": "Plantão de dúvidas de Matemática e Língua Portuguesa na sala dos professores no intervalo."
+        }
+      ],
       "quarta-feira": [
         {
           "dia": "quarta-feira",
@@ -11,10 +85,10 @@
           "saida": "12:30",
           "horario_lanche": "09:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
-          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
-          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
-          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+          "mensagem_boas_vindas": "Bom dia, comunidade Cora Coralina! Quarta-feira de muito conhecimento e foco nos estudos.",
+          "mensagem_destaque": "Hoje temos a favorita da escola: Macarronada à bolonhesa com banana da agricultura familiar!",
+          "mensagem_aviso": "Formem fila única e organizada para a distribuição da merenda escolar.",
+          "mensagem_coordenacao": "Atenção turmas dos 3ºs anos: Simulado preparatório para o ENEM no próximo sábado."
         },
         {
           "dia": "quarta-feira",
@@ -23,22 +97,22 @@
           "saida": "17:30",
           "horario_lanche": "15:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
-          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
-          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
-          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+          "mensagem_boas_vindas": "Boa tarde, turmas da tarde! Metade da semana superada com dedicação e bons resultados.",
+          "mensagem_destaque": "Merenda deliciosa às 15h30. Saboreiem com calma a macarronada e a fruta de sobremesa.",
+          "mensagem_aviso": "Lixo no lixo: utilizem as lixeiras seletivas distribuídas pelo pátio para o descarte correto.",
+          "mensagem_coordenacao": "Laboratório de Informática disponível no contraturno para pesquisas escolares e trabalhos."
         },
         {
           "dia": "quarta-feira",
           "periodo": "noite",
           "entrada": "18:20",
-          "saida": "21:52",
-          "horario_lanche": "23:14",
+          "saida": "22:00",
+          "horario_lanche": "20:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
-          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
-          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
-          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
+          "mensagem_boas_vindas": "Boa noite, estudantes e educadores! Sejam bem-vindos a mais uma noite produtiva.",
+          "mensagem_destaque": "Jantar da noite servido com acompanhamento de frutas frescas.",
+          "mensagem_aviso": "O portão de saída será aberto pontualmente às 22h. Respeitem o horário de encerramento das aulas.",
+          "mensagem_coordenacao": "Prazo final para entrega de documentação pendente na Secretaria até amanhã."
         }
       ],
       "quinta-feira": [
@@ -49,10 +123,10 @@
           "saida": "12:30",
           "horario_lanche": "09:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
-          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
-          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
-          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+          "mensagem_boas_vindas": "Bom dia, estudantes! Reta final da semana se aproximando com foco nos trabalhos e provas.",
+          "mensagem_destaque": "Merenda de hoje: Arroz carreteiro com carne em cubos e salada de folhas verdes.",
+          "mensagem_aviso": "Mantenham a garrafinha de água cheia e hidratem-se nos bebedouros do pátio durante as aulas.",
+          "mensagem_coordenacao": "Aulas de reforço escolar e monitoria de Ciências da Natureza acontecendo no contraturno."
         },
         {
           "dia": "quinta-feira",
@@ -61,22 +135,22 @@
           "saida": "17:30",
           "horario_lanche": "15:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
-          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
-          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
-          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+          "mensagem_boas_vindas": "Boa tarde a todos! Dedicação e respeito mútuo constroem um colégio melhor a cada dia.",
+          "mensagem_destaque": "Arroz carreteiro no intervalo da tarde. Alimentação saudável supervisionada pela equipe nutricional.",
+          "mensagem_aviso": "Cuidem das mesas, cadeiras e patrimônio da nossa escola pública.",
+          "mensagem_coordenacao": "Divulgado no mural central o cronograma de avaliações do 2º bimestre."
         },
         {
           "dia": "quinta-feira",
           "periodo": "noite",
           "entrada": "18:20",
-          "saida": "21:52",
-          "horario_lanche": "23:14",
+          "saida": "22:00",
+          "horario_lanche": "20:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
-          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
-          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
-          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
+          "mensagem_boas_vindas": "Boa noite a todos os trabalhadores e estudantes do período noturno!",
+          "mensagem_destaque": "Jantar quente e reconfortante servido pontualmente no intervalo das 20h30.",
+          "mensagem_aviso": "Pedimos atenção ao silêncio nos corredores durante o horário de aula.",
+          "mensagem_coordenacao": "Atendimento da Orientação Educacional disponível para atendimento individual aos alunos da EJA."
         }
       ],
       "sexta-feira": [
@@ -85,12 +159,12 @@
           "periodo": "manhã",
           "entrada": "06:30",
           "saida": "12:30",
-          "horario_lanche": "11:30",
+          "horario_lanche": "09:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "jkhvljkhvljhcvlujyhgcfluyhjgc",
-          "mensagem_destaque": "ipug7tpoiluyfgpi;uyfvpu;yfoulyfokulyfikouytf",
-          "mensagem_aviso": "lhvfluyfluyfcvlkuytjfvclkuytfcvkluytfckyutf",
-          "mensagem_coordenacao": "kulyhcfvolkutycvflkuytfklouhgvloukyfioyutfiuytgv"
+          "mensagem_boas_vindas": "Sexta-feira no Colégio Cora Coralina! Parabéns pelo esforço e dedicação de toda a semana.",
+          "mensagem_destaque": "Cardápio Especial de Sexta: Feijão tropeiro tradicional com couve refogada e suco natural de caju!",
+          "mensagem_aviso": "Verifiquem seus pertences e não esqueçam cadernos ou materiais pessoais sob as carteiras.",
+          "mensagem_coordenacao": "Devolução semanal dos livros emprestados na biblioteca até às 12h."
         },
         {
           "dia": "sexta-feira",
@@ -99,56 +173,72 @@
           "saida": "17:30",
           "horario_lanche": "15:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "iuogp;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ckfgyhujditykckhgdtyiu",
-          "mensagem_destaque": "ofyucvfyuofyufyufyufyufyukftkftftyh",
-          "mensagem_aviso": "ukycftdftyuicvhjklidfutycghkdtyicgmedty",
-          "mensagem_coordenacao": "mvbncjghdfcertyudfghjcvbn"
+          "mensagem_boas_vindas": "Boa tarde de sexta-feira a toda a comunidade escolar! Encerrando a semana com ótimos aprendizados.",
+          "mensagem_destaque": "Feijão tropeiro especial servido com suco de fruta fresca no intervalo das 15h30.",
+          "mensagem_aviso": "Tenham um excelente e seguro final de semana. Aproveitem para descansar e conviver com a família.",
+          "mensagem_coordenacao": "Quadro de notas parciais e recados da direção afixados no mural de entrada."
         },
         {
           "dia": "sexta-feira",
           "periodo": "noite",
           "entrada": "18:20",
-          "saida": "21:52",
-          "horario_lanche": "23:14",
+          "saida": "22:00",
+          "horario_lanche": "20:30",
           "horario_especial": {},
-          "mensagem_boas_vindas": "oufylftyuolfyuolfyuofyuolfyullfyuo",
-          "mensagem_destaque": "fgyuiopfgyuiopfgyuiopfgyuiopfgyuiop",
-          "mensagem_aviso": "ghuiop[ghuiop[huiop[gihou[g",
-          "mensagem_coordenacao": "ouyftfgyuvghjkltyuovhjk,"
+          "mensagem_boas_vindas": "Boa noite, alunos e professores do noturno! Encerrando a semana com sensação de dever cumprido.",
+          "mensagem_destaque": "Refeição especial de encerramento da semana no refeitório.",
+          "mensagem_aviso": "Bom descanso a todos no final de semana! Retornamos na segunda-feira com novas energias.",
+          "mensagem_coordenacao": "Lembramos que as aulas reiniciam na próxima segunda-feira às 18h30. Bom descanso!"
         }
       ]
     }
   ],
   "cardapio": [
     {
-      "prato": "Strogonoff de carne",
-      "acompanhamento": "Fattias de maçã",
+      "prato": "Galinhada com Salada",
+      "acompanhamento": "Arroz com frango em pedaços e cheiro-verde, salada de repolho e tomate",
       "dia": "segunda-feira",
       "especial": "false",
-      "description": "strogonoff de carne com fatias de maçã",
+      "description": "Galinhada tradicional goiana bem temperada, acompanhada de salada fresca de repolho e tomate da horta escolar.",
       "id": "38Y2M6X"
     },
     {
-      "prato": "Feijoada",
-      "acompanhamento": "laranja em fatias",
-      "dia": "sexta-feira",
+      "prato": "Carne Moída com Legumes",
+      "acompanhamento": "Arroz branco, feijão carioca e abobrinha refogada",
+      "dia": "terça-feira",
       "especial": "false",
-      "description": "sua descricao...",
-      "id": "YTPRZEO"
+      "description": "Carne bovina moída refogada com cenoura e batata em cubinhos, servida com arroz e feijão fresquinho.",
+      "id": "ZG7359B"
     },
     {
-      "prato": "Feijoada",
-      "acompanhamento": "laranja em fatias",
-      "dia": "terça-feira",
+      "prato": "Macarronada à Bolonhesa",
+      "acompanhamento": "Molho de carne com tomates frescos e banana de sobremesa",
+      "dia": "quarta-feira",
+      "especial": "false",
+      "description": "Macarronada caseira ao molho de tomate com carne, acompanhada de banana da agricultura familiar.",
+      "id": "MC4892A"
+    },
+    {
+      "prato": "Arroz Carreteiro com Salada",
+      "acompanhamento": "Carne bovina desfiada com arroz, feijão e salada de alface",
+      "dia": "quinta-feira",
+      "especial": "false",
+      "description": "Arroz carreteiro com carne bovina em cubos, temperos frescos e salada verde de folhas.",
+      "id": "PX1039B"
+    },
+    {
+      "prato": "Feijão Tropeiro Especial",
+      "acompanhamento": "Arroz branco, couve refogada e suco natural de caju",
+      "dia": "sexta-feira",
       "especial": "true",
-      "description": "sua descricao...",
-      "id": "ZG7359B"
+      "description": "Feijão tropeiro tradicional com farinha de mandioca, ovos e couve refogada, servido com suco natural de fruta.",
+      "id": "YTPRZEO"
     }
   ],
   "accounts": {
     "dark.js6507@gmail.com": {
       "email": "dark.js6507@gmail.com",
-      "password": "12345678",
+      "password": "$2b$10$91r/uJV2N1lk4mqSCpBreud.BWsEkuYDyexc7PMrKaYb516Iztdky",
       "name": "MOTO",
       "role": "admin",
       "identifier": "master"
@@ -160,12 +250,12 @@
       "transition": 10
     },
     "ia_speech": {
-      "speech_engine": "espeak",
+      "speech_engine": "neural",
       "speech_speed": "2",
-      "auto_advertise": false
+      "auto_advertise": true
     },
     "plugins": {
-      "audit_logs": false
+      "audit_logs": true
     }
   }
 }
