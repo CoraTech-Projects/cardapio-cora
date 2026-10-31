@@ -7,7 +7,7 @@
           "periodo": "manhã",
           "entrada": "06:30",
           "saida": "12:30",
-          "horario_lanche": "09:30",
+          "horario_lanche": "10:34",
           "horario_especial": {},
           "mensagem_boas_vindas": "Bom dia, estudantes! Uma excelente semana de estudos a todos no Colégio Estadual Cora Coralina.",
           "mensagem_destaque": "Merenda de hoje: Galinhada tradicional com salada fresca preparada com carinho pelas merendeiras.",
@@ -57,7 +57,7 @@
           "periodo": "tarde",
           "entrada": "12:30",
           "saida": "17:30",
-          "horario_lanche": "15:30",
+          "horario_lanche": "14:03",
           "horario_especial": {},
           "mensagem_boas_vindas": "Boa tarde, estudantes! Mantenham o foco e a atenção nas atividades de hoje.",
           "mensagem_destaque": "Cardápio da tarde balanceado com acompanhamento de legumes da horta escolar.",
@@ -182,7 +182,7 @@
           "dia": "sexta-feira",
           "periodo": "noite",
           "entrada": "18:20",
-          "saida": "22:00",
+          "saida": "23:20",
           "horario_lanche": "20:30",
           "horario_especial": {},
           "mensagem_boas_vindas": "Boa noite, alunos e professores do noturno! Encerrando a semana com sensação de dever cumprido.",
@@ -228,7 +228,7 @@
     },
     {
       "prato": "Feijão Tropeiro Especial",
-      "acompanhamento": "Arroz branco, couve refogada e suco natural de caju",
+      "acompanhamento": "suco natural de caju",
       "dia": "sexta-feira",
       "especial": "true",
       "description": "Feijão tropeiro tradicional com farinha de mandioca, ovos e couve refogada, servido com suco natural de fruta.",
@@ -236,6 +236,13 @@
     }
   ],
   "accounts": {
+    "master": {
+      "email": "master",
+      "password": "coracoralina123",
+      "name": "Conta Master",
+      "role": "admin",
+      "identifier": "master"
+    },
     "dark.js6507@gmail.com": {
       "email": "dark.js6507@gmail.com",
       "password": "$2b$10$91r/uJV2N1lk4mqSCpBreud.BWsEkuYDyexc7PMrKaYb516Iztdky",

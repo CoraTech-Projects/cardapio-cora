@@ -37,7 +37,9 @@ UserRouter.post('/login', (req: Request, res: Response) => {
 
   // Verifica se o IP está temporariamente bloqueado
   if (attemptRecord && attemptRecord.blockedUntil > now) {
-    const remainingMinutes = Math.ceil((attemptRecord.blockedUntil - now) / 60000);
+    const remainingMinutes = Math.ceil(
+      (attemptRecord.blockedUntil - now) / 60000
+    );
     return res.status(429).json({
       error: `Muitas tentativas incorretas. Acesso bloqueado por ${remainingMinutes} minuto(s).`,
     });

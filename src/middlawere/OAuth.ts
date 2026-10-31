@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET: string =
-  process.env.SESSION_SECRET ||
-  process.env.COOKIE_SECRET as string;
+  process.env.SESSION_SECRET || (process.env.COOKIE_SECRET as string);
 
 function tokenCreator(userId: string): string {
   try {

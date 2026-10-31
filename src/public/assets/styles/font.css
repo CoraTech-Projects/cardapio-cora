@@ -1,0 +1,25 @@
+
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 500; 
+  src: url('../fonts/MaterialSymbolsRounded-Medium.ttf') format('truetype');
+}
+
+
+.material-icons {
+  font-family: 'Material Symbols Rounded';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

@@ -5,10 +5,6 @@
     <link rel="stylesheet" href="/_LOGIN/login.css?v=2" />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.ico" />
     <script src="/_LOGIN/login.js"></script>
-    <script
-      src="https://kit.fontawesome.com/28157a8fdb.js"
-      crossorigin="anonymous"
-    ></script>
     <title>Login</title>
   </head>
   <body>
@@ -24,7 +20,7 @@
       <hr />
       <h4>Identificador</h4>
       <div class="text-area" style="margin-bottom: 10px">
-        <i class="fa-solid fa-address-card"></i>
+        <span class="material-icons">alternate_email</span>
         <input
           type="text"
           placeholder="Identificador..."
@@ -34,17 +30,17 @@
       </div>
       <h4>Senha</h4>
       <div class="text-area">
-        <i class="fa-solid fa-key"></i>
+        <span class="material-icons">password</span>
         <input
           type="password"
           placeholder="1234..."
           name="password"
           id="password"
         />
-        <i
-          class="fa-solid fa-eye-slash showPass"
+        <span
+          class="material-icons showPass"
           onclick="togglePassword()"
-        ></i>
+        >visibility_off</span>
       </div>
       <p class="error-message" id="error-message"></p>
 

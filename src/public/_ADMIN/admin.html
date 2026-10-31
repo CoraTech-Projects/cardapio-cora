@@ -4,10 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Administrativo - CECC</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
     <link rel="icon" type="image/x-icon" href="/assets/images/logo.ico" />
     <link rel="stylesheet" href="/_ADMIN/admin.css?v=4" />
     <script src="/_ADMIN/admin.js?v=4" defer></script>
@@ -21,27 +17,27 @@
       <ul class="menu-list">
         <li class="menu-item active">
           <a href="#dashboard"
-            ><span class="material-icons-round">dashboard</span>Dashboard</a
+            ><span class="material-icons">dashboard</span>Dashboard</a
           >
         </li>
         <li class="menu-item">
           <a href="#cardapio"
-            ><span class="material-icons-round">restaurant</span>Cardapio</a
+            ><span class="material-icons">restaurant</span>Cardapio</a
           >
         </li>
         <li class="menu-item">
           <a href="#rotinas"
-            ><span class="material-icons-round">calendar_today</span>Rotinas</a
+            ><span class="material-icons">calendar_today</span>Rotinas</a
           >
         </li>
         <li class="menu-item">
           <a href="#configuracoes"
-            ><span class="material-icons-round">settings</span>Configurações</a
+            ><span class="material-icons">settings</span>Configurações</a
           >
         </li>
         <li class="menu-item" style="margin-top: 20px">
           <a href="/user/logout" style="color: #ef4444"
-            ><span class="material-icons-round">logout</span>Sair</a
+            ><span class="material-icons">logout</span>Sair</a
           >
         </li>
       </ul>
@@ -87,7 +83,7 @@
               <div class="number"></div>
             </div>
             <div class="stat-icon">
-              <span class="material-icons-round"></span>
+              <span class="material-icons"></span>
             </div>
           </div>
           <div class="card-stat loading">
@@ -96,7 +92,7 @@
               <div class="number"></div>
             </div>
             <div class="stat-icon">
-              <span class="material-icons-round"></span>
+              <span class="material-icons"></span>
             </div>
           </div>
           <div class="card-stat loading">
@@ -105,7 +101,7 @@
               <div class="number"></div>
             </div>
             <div class="stat-icon">
-              <span class="material-icons-round"></span>
+              <span class="material-icons"></span>
             </div>
           </div>
         </div>
@@ -116,28 +112,11 @@
             <div class="activity-info">
               <div class="activity-badge"></div>
               <div>
-                <strong>Inicio do período da Tarde</strong>
-                <p style="font-size: 0.85rem; color: var(--texto-secundario)">
-                  Inicio do período da tarde.
-                </p>
+                <strong>nenhum evento ainda</strong>
               </div>
             </div>
             <span style="font-size: 0.85rem; color: var(--texto-secundario)"
-              >Há 5 min</span
-            >
-          </div>
-          <div class="activity-item">
-            <div class="activity-info">
-              <div class="activity-badge"></div>
-              <div>
-                <strong>Fim do Período da manhã</strong>
-                <p style="font-size: 0.85rem; color: var(--texto-secundario)">
-                  Relatório de fechamento mensal gerado por Admin.
-                </p>
-              </div>
-            </div>
-            <span style="font-size: 0.85rem; color: var(--texto-secundario)"
-              >Há 1 hora</span
+              ></span
             >
           </div>
         </section>
@@ -148,12 +127,16 @@
     <div id="modalVisualizarTV" class="modal-overlay">
       <div class="modal-content modal-tv-preview">
         <div class="modal-header">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span class="material-icons-round" style="color: var(--sidebar-ativo); font-size: 26px;">tv</span>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span
+              class="material-icons"
+              style="color: var(--sidebar-ativo); font-size: 26px"
+              >tv</span
+            >
             <h2>Transmissão ao Vivo da TV</h2>
           </div>
           <button class="btn-icon" onclick="fecharModalVisualizarTV()">
-            <span class="material-icons-round">close</span>
+            <span class="material-icons">close</span>
           </button>
         </div>
 
@@ -164,7 +147,12 @@
               <span>Ao Vivo • Quiosque Refeitório</span>
             </div>
             <div class="tv-screen-container">
-              <iframe id="tvPreviewIframe" src="/monitor?demo=true" class="tv-screen" scrolling="no"></iframe>
+              <iframe
+                id="tvPreviewIframe"
+                src="/monitor?demo=true"
+                class="tv-screen"
+                scrolling="no"
+              ></iframe>
             </div>
           </div>
           <div class="tv-stand"></div>
@@ -175,19 +163,29 @@
             <span class="tv-info-label">Código de Pareamento</span>
             <div class="tv-token-display">
               <code id="tvTokenValue">CECC-842K91</code>
-              <button class="btn-copy-token" onclick="copiarTokenTV()" title="Copiar código">
-                <span class="material-icons-round">content_copy</span>
+              <button
+                class="btn-copy-token"
+                onclick="copiarTokenTV()"
+                title="Copiar código"
+              >
+                <span class="material-icons">content_copy</span>
               </button>
             </div>
           </div>
 
           <div class="tv-actions-box">
-            <button class="btn-tv-action secondary" onclick="copiarLinkMonitor()">
-              <span class="material-icons-round">link</span>
+            <button
+              class="btn-tv-action secondary"
+              onclick="copiarLinkMonitor()"
+            >
+              <span class="material-icons">link</span>
               <span>Copiar Link</span>
             </button>
-            <button class="btn-tv-action primary" onclick="abrirMonitorNovaAba()">
-              <span class="material-icons-round">open_in_new</span>
+            <button
+              class="btn-tv-action primary"
+              onclick="abrirMonitorNovaAba()"
+            >
+              <span class="material-icons">open_in_new</span>
               <span>Abrir Tela Cheia</span>
             </button>
           </div>

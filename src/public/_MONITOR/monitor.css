@@ -1,155 +1,594 @@
-body {
+@import '../assets/styles/font.css';
+
+/* =========================================================
+       ESTILOS BASE E VARIÁVEIS DE TEMA (CSS PURO)
+       ========================================================= */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  background-color: #1f1f28;
-  color: #fff;
 }
 
-#monitor-content {
-  text-align: end;
-  border-radius: 10px;
-  padding: 10px;
-  transition: 0.3s all ease;
-}
-
-#monitor-content h1 {
-  font-size: 8rem;
-  margin: 0;
-  text-align: center;
-}
-
-#monitor-content p {
-  margin: 0;
-}
-
-#monitor-content #turno {
-  opacity: 0.5;
-  text-align: center;
-}
-
-#cardapio-exibicao {
-  margin-top: 25px;
-  text-align: center;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  min-height: 130px;
-  max-width: 800px;
-  width: 100%;
-}
-
-.slide-item {
+body {
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  transition:
+    background 0.8s ease,
+    color 0.5s ease;
+}
+
+/* ☀️ TEMA 1: MANHÃ (Sol, Energia, Amarelo Solar, Azul Céu, Verde) */
+body.theme-manha {
+  background: linear-gradient(
+    135deg,
+    #fef08a 0%,
+    #fde047 35%,
+    #bae6fd 70%,
+    #dcfce7 100%
+  );
+  color: #0f172a;
+}
+body.theme-manha .card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 4px solid #f59e0b;
+  box-shadow: 0 20px 40px -10px rgba(217, 119, 6, 0.4);
+}
+body.theme-manha .header {
+  background: #ffffff;
+  border-bottom: 4px solid #f59e0b;
+}
+body.theme-manha .badge-primary {
+  background: #d97706;
+  color: #ffffff;
+}
+body.theme-manha .highlight-box {
+  background: #fef3c7;
+  border-left: 8px solid #f59e0b;
+  color: #78350f;
+}
+
+/* ⚡ TEMA 2: TARDE (Adolescente / Pop Art: Rosa Magenta, Roxo, Ciano) */
+body.theme-tarde {
+  background: linear-gradient(135deg, #f472b6 0%, #c084fc 45%, #38bdf8 100%);
+  color: #0f172a;
+}
+body.theme-tarde .card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 4px solid #db2777;
+  box-shadow: 0 20px 40px -10px rgba(219, 39, 119, 0.45);
+}
+body.theme-tarde .header {
+  background: #ffffff;
+  border-bottom: 4px solid #ec4899;
+}
+body.theme-tarde .badge-primary {
+  background: #db2777;
+  color: #ffffff;
+}
+body.theme-tarde .highlight-box {
+  background: #fce7f3;
+  border-left: 8px solid #db2777;
+  color: #831843;
+}
+
+/* 🌙 TEMA 3: NOITE (Sério / Elegante: Azul Marinho, Ardósia e Dourado) */
+body.theme-noite {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
+  color: #0f172a;
+}
+body.theme-noite .card {
+  background: #6482c13f;
+  border: 2px solid #2b00ff94;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.35);
+}
+body.theme-noite .header {
+  background: #6482c13f;
+  border-bottom: 2px solid #2b00ff94;
+}
+body.theme-noite .badge-primary {
+  background: #1e293b;
+  color: #fbbf24;
+}
+body.theme-noite .highlight-box {
+  background: #f1f5f9;
+  border-left: 8px solid #1e293b;
+  color: #0f172a;
+}
+
+/* =========================================================
+       ESTRUTURA DO CABEÇALHO (HEADER)
+       ========================================================= */
+.header {
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  z-index: 30;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #f59e0b;
+  color: #0f172a;
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 28px;
+  overflow: hidden;
+  border: 3px solid #0f172a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-#cardapio-exibicao h2 {
-  font-size: 2.5rem;
-  margin: 10px 0 8px 0;
-  color: #fff;
+.brand-icon img {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: -0.5px;
+  color: #0f172a;
+  line-height: 1.1;
 }
 
-.slide-subtexto {
-  font-size: 1.25rem;
-  opacity: 0.8;
-  margin: 0;
-  max-width: 650px;
-  line-height: 1.4;
-}
-
-.badge-merenda {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  padding: 4px 14px;
-  border-radius: 9999px;
-  letter-spacing: 0.5px;
+.brand-subtitle {
+  font-size: 13px;
+  font-weight: 800;
+  color: #475569;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.badge-aviso {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #facc15;
-  background: rgba(250, 204, 21, 0.12);
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  padding: 4px 14px;
-  border-radius: 9999px;
-  letter-spacing: 0.5px;
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+/* SELETOR DE TEMAS */
+.theme-selector {
+  display: flex;
+  background: #e2e8f0;
+  padding: 6px;
+  border-radius: 16px;
+  border: 2px solid #cbd5e1;
+  gap: 6px;
+}
+
+.theme-btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #334155;
+  transition: all 0.3s ease;
+}
+
+.theme-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* RELÓGIO DIGITAL */
+.clock-box {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 16px;
+  border: 3px solid #f59e0b;
+  text-align: right;
+}
+
+.clock-box.closed {
+  opacity: 0;
+}
+
+.clock-time {
+  font-family: monospace;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fde047;
+  letter-spacing: 2px;
+}
+
+.clock-date {
+  font-size: 10px;
+  font-weight: 800;
+  color: #cbd5e1;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 
-.aviso-titulo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #facc15;
-  margin: 0 0 10px 0;
-  letter-spacing: -0.3px;
-}
-
-.aviso-texto {
-  font-size: 1.25rem;
-  max-width: 680px;
+/* =========================================================
+       ÁREA PRINCIPAL DE CARROSSEL / SLIDES
+       ========================================================= */
+.main-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 32px;
+  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  line-height: 1.5;
-  color: #e2e8f0;
+  position: relative;
 }
 
-.aviso-rodape {
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #94a3b8;
-  font-weight: 500;
+.slides-wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#monitor-content .frase {
-  background-color: rgba(45, 45, 56, 0.422);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 10px 22px;
-  max-width: 480px;
-  width: auto;
+.controls-wrapper.closed {
+  opacity: 0;
+}
+
+/* EFEITOS E ANIMAÇÃO DOS CARDS */
+.card {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 0;
+  border-radius: 28px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.92) translateY(30px);
+  pointer-events: none;
+  transition:
+    opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card .clock {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 16px;
+  border: 3px solid #f59e0b;
   text-align: center;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: border-color 0.3s ease;
-  box-sizing: border-box;
 }
 
-#monitor-content .frase:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+.card .clock .clock-time {
+  font-family: monospace;
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fde047;
+  letter-spacing: 2px;
 }
 
-#monitor-content .frase img:not([src]),
-#monitor-content .frase img[src=''] {
-  display: none;
+.card .clock .clock-date {
+  font-size: 10px;
+  font-weight: 800;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-#monitor-content .frase h3 {
-  margin: 0 0 4px 0;
-  font-size: 1rem;
+.badge-primary {
+  align-self: flex-start;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#monitor-content .frase p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
+.card-title-subtitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #64748b;
+}
+
+.card-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.highlight-box {
+  padding: 20px;
+  border-radius: 0 16px 16px 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card-meta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #0f172a;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.meta-tag i {
+  font-size: 24px;
+  color: #fde047;
+}
+
+.meta-tag-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-tag-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.meta-tag-val {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* DIREITA (ILUSTRAÇÃO / ÍCONE GIGANTE) */
+.card-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-bubble {
+  width: 230px;
+  height: 230px;
+  border-radius: 36px;
+  background: #fde047;
+  border: 5px solid #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  overflow: hidden;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+.icon-bubble img {
+  width: 230px;
+  height: 230px;
+  border-radius: 36px;
+  object-fit: cover;
+}
+
+/* =========================================================
+       BARRA DE NAVEGAÇÃO DOS SLIDES E MARQUEE
+       ========================================================= */
+.controls-wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto 16px;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.dots-container {
+  display: flex;
+  gap: 12px;
+  background: #0f172a;
+  padding: 12px 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dot-btn {
+  width: 50px;
+  height: 10px;
+  border-radius: 10px;
+  background: #334155;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.dot-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #fde047;
+  transition: width 0.1s linear;
+}
+
+.category-label {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 8px 24px;
+  border-radius: 16px;
+  border: 3px solid #0f172a;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* RODAPÉ COM NOTÍCIAS CONTINUAS (MARQUEE) */
+.marquee-footer {
+  background: #0f172a;
+  border-top: 4px solid #f59e0b;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.marquee-badge {
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: 900;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 2px solid #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 24s linear infinite;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-left: 48px;
+}
+
+.marquee-item i {
+  color: #fde047;
+}
+
+/* =========================================================
+       ANIMAÇÕES CSS
+       ========================================================= */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDADE EM TELAS MENORES */
+@media (max-width: 900px) {
+  .card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 20px;
+  }
+  .card-right {
+    display: none;
+  }
+  .card-title {
+    font-size: 32px;
+  }
+  .highlight-box {
+    font-size: 18px;
+  }
+  .header {
+    padding: 12px 16px;
+  }
 }

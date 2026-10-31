@@ -4,117 +4,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monitor - Cardápio Cora</title>
     <link rel="stylesheet" href="/_MONITOR/monitor.css?v=4" />
-    <script>
-      const audio = document.createElement('audio');
-      audio.src = '/assets/audios/ringtone1.mp3';
-
-      let checkSync;
-      let infos;
-      let clockSave = JSON.parse(localStorage.getItem('monitor_on_clock'));
-
-      function isDemo() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('demo') === 'true' || urlParams.has('demo');
-      }
-
-      function updateClock() {
-        const now = new Date();
-        const horasEl = document.getElementById('monitor-horas');
-        if (horasEl) {
-          horasEl.textContent = now.toLocaleTimeString('pt-BR');
-        }
-
-        const turnoEl = document.getElementById('turno');
-        if (turnoEl) {
-          const hours = now.getHours();
-          if (hours >= 6 && hours < 12) {
-            turnoEl.textContent = 'Turno da Manhã';
-          } else if (hours >= 12 && hours < 18) {
-            turnoEl.textContent = 'Turno da Tarde';
-          } else {
-            turnoEl.textContent = 'Turno da Noite';
-          }
-        }
-      }
-
-      async function filledSync() {
-        if (infos) return;
-
-        try {
-          const query = isDemo() ? '?demo=true' : needSync();
-          const response = await fetch('/cardapio' + query);
-          if (!response.ok || response.status === 201) return;
-
-          const data = await response.json();
-          if (!data || !data.cardapio || !data.cardapio.prato) return;
-
-          infos = data;
-
-          let savedClock = JSON.parse(localStorage.getItem('monitor_on_clock'));
-
-          if (!savedClock || !savedClock.timeToClear) {
-            const targetTime = Date.now() + 10 * 60 * 1000;
-            savedClock = { timeToClear: targetTime };
-            localStorage.setItem(
-              'monitor_on_clock',
-              JSON.stringify(savedClock)
-            );
-          }
-
-          const remainingTime = savedClock.timeToClear - Date.now();
-
-          initMonitor();
-
-          clearInterval(checkSync);
-
-          if (remainingTime > 0) {
-            setTimeout(clearAndVistorize, remainingTime);
-          } else {
-            clearAndVistorize();
-          }
-        } catch (err) {
-          console.warn('[MONITOR] Erro na sincronização:', err);
-        }
-      }
-
-      function clearAndVistorize() {
-        const cardapioDiv = document.getElementById('cardapio-exibicao');
-        if (cardapioDiv) cardapioDiv.style.display = 'none';
-
-        checkSync = setInterval(filledSync, 3000);
-        infos = null;
-        localStorage.removeItem('monitor_on_clock');
-        clockSave = null;
-      }
-
-      function needSync() {
-        const currentClock = JSON.parse(
-          localStorage.getItem('monitor_on_clock')
-        );
-        return currentClock ? '' : '/sync';
-      }
-
-      setInterval(updateClock, 1000);
-      window.addEventListener('DOMContentLoaded', () => {
-        updateClock();
-        checkSync = setInterval(filledSync, 3000);
-        filledSync();
-      });
-    </script>
-    <script src="/_MONITOR/monitor.js?v=3"></script>
+    <script src="/_MONITOR/monitor.js"></script>
   </head>
-  <body>
-    <div id="monitor-content">
-      <h1 id="monitor-horas">00:00:00</h1>
-      <p id="turno">Turno da Manhã</p>
-      <div class="frase">
-        <img src="" alt="" />
-        <h3>Cora Coralina</h3>
-        <p>
-          “Nada do que vivemos tem sentido, se não tocarmos o coração das
-          pessoas.”
-        </p>
+  <body id="appBody" class="theme-manha">
+    <!-- CABEÇALHO DO PAINEL -->
+    <header class="header">
+      <div class="brand-container">
+        <div class="brand-icon">
+         <img src='../assets/images/logo.png'>
+        </div>
+        <div>
+          <h1 class="brand-title">CECC</h1>
+          <p id="headerPeriodo" class="brand-subtitle">
+            <span class="live-dot"></span> QUINTA-FEIRA • TURNO MANHÃ
+          </p>
+        </div>
       </div>
+
+      <!-- RELÓGIO DIGITAL -->
+      <div class="clock-box closed">
+        <div id="clockTime" class="clock-time">00:00:00</div>
+        <div id="clockDate" class="clock-date">CARREGANDO...</div>
+      </div>
+    </header>
+
+    <!-- ÁREA CENTRAL DE CARROSSEL DE CARDS -->
+    <main class="main-container">
+      <div class="slides-wrapper">
+        <div id="clock" class="card active">
+          <div class="card-left">
+            <div class="badge-primary">
+              <i class="fa-solid fa-utensils"></i> alunos em Hórario de Aula
+            </div>
+            <div class="card-title-subtitle">
+              <span class="card-subtitle">Refeição hoje</span>
+              <h2 id="cardapioTitulo" class="card-title">Arroz Carreteiro</h2>
+            </div>
+            <div class="clock">
+              <div class="clock-time">00:00:00</div>
+              <div class="clock-date">Carregando....</div>
+            </div>
+          </div>
+          <div class="card-right">
+            <div class="icon-bubble" style="background: #fde047">
+              <i class="icon-book"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- CONTROLES DO CARROSSEL -->
+    <div class="controls-wrapper closed">
+      <div class="dots-container">
+        <button class="dot-btn" onclick="goToSlide(0)">
+          <div class="dot-progress" id="dot-0"></div>
+        </button>
+        <button class="dot-btn" onclick="goToSlide(1)">
+          <div class="dot-progress" id="dot-1"></div>
+        </button>
+        <button class="dot-btn" onclick="goToSlide(2)">
+          <div class="dot-progress" id="dot-2"></div>
+        </button>
+        <button class="dot-btn" onclick="goToSlide(3)">
+          <div class="dot-progress" id="dot-3"></div>
+        </button>
+      </div>
+      <div id="categoryLabel" class="category-label">Cardápio da Merenda</div>
     </div>
+
+    <!-- RODAPÉ MARQUEE (MENSAGENS CONTINUAS) -->
+    <footer class="marquee-footer">
+      <div class="marquee-badge">
+        <span class="material-icons">notifications</span> Notícias Rápidas
+      </div>
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- Injetado via Javascript -->
+      </div>
+    </footer>
   </body>
 </html>

@@ -45,79 +45,96 @@ RotinasRouter.get('/:dia', async (req: any, res: any) => {
   }
 });
 
-RotinasRouter.post('/update-rotina', requireAuth, async (req: any, res: any) => {
-  const routineUpdateObject: Record<string, any> = req.body;
-  const dia = sanitizeText(routineUpdateObject.dia).toLowerCase();
-  const periodo = sanitizeText(routineUpdateObject.periodo).toLowerCase();
-
-  if (!dia || !db.has(`${ROTINAS_COLLECTION}.${dia}`)) {
-    return res.status(404).json({ error: 'Dia não encontrado nas rotinas' });
-  }
-
-  const dayArr: any[] = db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
-  const routineIndex = dayArr.findIndex(
-    (r: any) => r.periodo.toLowerCase() === periodo
-  );
-
-  if (routineIndex === -1) {
-    return res.status(404).json({ error: 'Período não encontrado para este dia' });
-  }
-
-  // Sanitiza todos os campos de texto enviados
-  const fieldsToSanitize = [
-    'entrada',
-    'saida',
-    'horario_lanche',
-    'mensagem_boas_vindas',
-    'mensagem_destaque',
-    'mensagem_aviso',
-    'mensagem_coordenacao',
-  ];
-
-  fieldsToSanitize.forEach((key: string) => {
-    if (routineUpdateObject[key] !== undefined) {
-      const sanitizedVal = sanitizeText(routineUpdateObject[key]);
-      db.update(
-        ROTINAS_COLLECTION,
-        `${dia}.${routineIndex}.${key}`,
-        sanitizedVal
-      );
+RotinasRouter.post(
+  '/update-rotina',
+  requireAuth,
+  async (req: any, res: any) => {
+    const routineUpdateObject: Record<string, any> = req.body;
+    const dia = sanitizeText(routineUpdateObject.dia).toLowerCase();
+    const periodo = sanitizeText(routineUpdateObject.periodo).toLowerCase();
+    
+    if (!dia || !db.has(`${ROTINAS_COLLECTION}.${dia}`)) {
+      return res.status(404).json({ error: 'Dia não encontrado nas rotinas' });
     }
-  });
 
-  return res.status(200).json({
-    message: 'Rotina atualizada com sucesso',
-    rotina: db.get(ROTINAS_COLLECTION)?.[0]?.[dia]?.[routineIndex],
-  });
-});
+    const dayArr: any[] = db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
+    const routineIndex = dayArr.findIndex(
+      (r: any) => r.periodo.toLowerCase() === periodo
+    );
 
-RotinasRouter.put('/inserir-rotina', requireAuth, async (req: any, res: any) => {
-  const dia = sanitizeText(req.body.dia).toLowerCase();
-  if (!dia) return res.status(400).json({ error: 'Dia é obrigatório' });
+    if (routineIndex === -1) {
+      return res
+        .status(404)
+        .json({ error: 'Período não encontrado para este dia' });
+    }
 
-  const sanitizedRoutine = {
-    dia,
-    periodo: sanitizeText(req.body.periodo).toLowerCase(),
-    entrada: sanitizeText(req.body.entrada),
-    saida: sanitizeText(req.body.saida),
-    horario_lanche: sanitizeText(req.body.horario_lanche),
-    horario_especial: {},
-    mensagem_boas_vindas: sanitizeText(req.body.mensagem_boas_vindas),
-    mensagem_destaque: sanitizeText(req.body.mensagem_destaque),
-    mensagem_aviso: sanitizeText(req.body.mensagem_aviso),
-    mensagem_coordenacao: sanitizeText(req.body.mensagem_coordenacao),
-  };
+    // Sanitiza todos os campos de texto enviados
+    const fieldsToSanitize = [
+      'entrada',
+      'saida',
+      'horario_lanche',
+      'mensagem_boas_vindas',
+      'mensagem_destaque',
+      'mensagem_aviso',
+      'mensagem_coordenacao',
+    ];
 
-  const dayRoutineContent: any[] = db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
-  dayRoutineContent.push(sanitizedRoutine);
-  db.update(ROTINAS_COLLECTION, `${dia}`, dayRoutineContent);
+    fieldsToSanitize.forEach((key: string) => {
+      if (routineUpdateObject[key] !== undefined) {
+        const sanitizedVal = sanitizeText(routineUpdateObject[key]);
 
-  return res.status(200).json({
-    status: 'success',
-    message: `Horário atualizado para o dia ${dia}`,
-    horario: dia,
-  });
-});
+        console.log(
+          ROTINAS_COLLECTION,
+          `${dia}.${routineIndex}.${key}`,
+          sanitizedVal)
+
+        db.update(
+          ROTINAS_COLLECTION,
+          `${dia}.${routineIndex}.${key}`,
+          sanitizedVal
+        );
+      }
+    });
+
+    return res.status(200).json({
+      message: 'Rotina atualizada com sucesso',
+      rotina: db.get(ROTINAS_COLLECTION)?.[0]?.[dia]?.[routineIndex],
+    });
+  }
+);
+
+RotinasRouter.put(
+  '/inserir-rotina',
+  requireAuth,
+  async (req: any, res: any) => {
+    const dia = sanitizeText(req.body.dia).toLowerCase();
+    if (!dia) return res.status(400).json({ error: 'Dia é obrigatório' });
+
+    const sanitizedRoutine = {
+      dia,
+      periodo: sanitizeText(req.body.periodo).toLowerCase(),
+      entrada: sanitizeText(req.body.entrada),
+      saida: sanitizeText(req.body.saida),
+      horario_lanche: sanitizeText(req.body.horario_lanche),
+      horario_especial: {},
+      mensagem_boas_vindas: sanitizeText(req.body.mensagem_boas_vindas),
+      mensagem_destaque: sanitizeText(req.body.mensagem_destaque),
+      mensagem_aviso: sanitizeText(req.body.mensagem_aviso),
+      mensagem_coordenacao: sanitizeText(req.body.mensagem_coordenacao),
+    };
+
+    const dayRoutineContent: any[] =
+      db.get(ROTINAS_COLLECTION)?.[0]?.[dia] || [];
+    dayRoutineContent.push(sanitizedRoutine);
+    db.update(ROTINAS_COLLECTION, `${dia}`, dayRoutineContent);
+
+    return res.status(200).json({
+      status: 'success',
+      message: `Horário atualizado para o dia ${dia}`,
+      horario: dia,
+    });
+  }
+);
 
 RotinasRouter.delete(
   '/delete-rotina',

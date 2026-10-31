@@ -151,14 +151,35 @@ class Database {
 
     if (Array.isArray(target) && this.dataType) {
       const [firstKey, ...restKeys] = keys;
-      const entry = this.findArrayElement(target, firstKey);
+      let entry = this.findArrayElement(target, firstKey);
 
       if (!entry) {
-        if (restKeys.length === 0 && typeof value === 'object') {
-          target.push(value);
+        if (target.length === 0) {
+          target.push({});
+        }
+        
+        let firstObj = target[0];
+        if (restKeys.length === 0) {
+          firstObj[firstKey] = value;
           return this.save();
         }
-        return false;
+
+        let current = firstObj;
+        if (!current[firstKey]) {
+          current[firstKey] = {};
+        }
+        current = current[firstKey];
+
+        for (let i = 0; i < restKeys.length - 1; i++) {
+          const key = restKeys[i];
+          if (!current[key] || typeof current[key] !== 'object') {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+
+        current[restKeys[restKeys.length - 1]] = value;
+        return this.save();
       }
 
       if (restKeys.length === 0) {
@@ -269,24 +290,34 @@ class Database {
   }
 
   public has(value: any): boolean {
-    // Verifica se há um caminho profundo (collection.key ou collection.key.subkey)
     if (typeof value === 'string' && value.includes('.')) {
       const keys = value.split('.');
       let target: any = this.db;
 
-      for (const key of keys) {
-        if (Array.isArray(target) && this.dataType) {
-          target = this.getNestedFromArray(target, key);
-        } else if (target && typeof target === 'object' && key in target) {
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+
+        if (Array.isArray(target) && !isNaN(Number(key))) {
+          target = target[Number(key)];
+        } 
+        else if (Array.isArray(target)) {
+          const found = target.find(item => item && typeof item === 'object' && key in item);
+          if (found) {
+            target = found[key];
+          } else {
+            return false;
+          }
+        } 
+        else if (target && typeof target === 'object' && key in target) {
           target = target[key];
-        } else {
+        } 
+        else {
           return false;
         }
       }
       return target !== undefined;
     }
 
-    // Comportamento original para valores simples e coleções
     return (
       this.all().some((item) => {
         if (item && typeof item === 'object') {
